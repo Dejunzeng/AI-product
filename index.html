@@ -1,0 +1,1228 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2024–2026 全球高护城河 AI 产品深度分析报告</title>
+<style>
+:root{
+  --bg:#f4f5fa; --card:#ffffff; --ink:#111834; --sub:#5b6478; --line:#e4e7f0;
+  --accent:#4f46e5; --accent2:#7c3aed; --soft:#eef0fb;
+  --hero1:#0b1024; --hero2:#1c1a4e; --hero3:#372a6e;
+  --gold:#b45309; --green:#047857; --red:#b91c1c;
+  --radius:14px;
+  --shadow:0 1px 2px rgba(16,22,52,.05),0 8px 24px -12px rgba(16,22,52,.12);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+body{font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans SC",system-ui,-apple-system,"Segoe UI",sans-serif;background:var(--bg);color:var(--ink);line-height:1.75;font-size:15.5px;-webkit-font-smoothing:antialiased}
+
+/* ===== 顶部导航 ===== */
+#progress{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,#4f46e5,#a855f7,#ec4899);width:0%;z-index:1000;transition:width .1s linear}
+nav{position:fixed;top:3px;left:0;right:0;z-index:999;background:rgba(255,255,255,.86);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav-inner{max-width:1180px;margin:0 auto;display:flex;align-items:center;gap:18px;padding:0 22px;height:56px}
+.brand{display:flex;align-items:center;gap:9px;font-weight:800;font-size:15px;letter-spacing:.5px;white-space:nowrap}
+.brand .logo{width:26px;height:26px;border-radius:8px;background:linear-gradient(135deg,#4f46e5,#a855f7);display:grid;place-items:center;color:#fff;font-size:13px;font-weight:900}
+.brand small{color:var(--sub);font-weight:600}
+.nav-links{display:flex;gap:2px;margin-left:auto;overflow-x:auto;scrollbar-width:none}
+.nav-links::-webkit-scrollbar{display:none}
+.nav-links a{color:var(--sub);text-decoration:none;font-size:13.5px;font-weight:600;padding:7px 12px;border-radius:99px;white-space:nowrap;transition:.2s}
+.nav-links a:hover{color:var(--accent);background:var(--soft)}
+.nav-links a.active{color:#fff;background:linear-gradient(135deg,#4f46e5,#7c3aed)}
+
+/* ===== Hero ===== */
+.hero{background:radial-gradient(1100px 500px at 85% -10%,rgba(124,58,237,.35),transparent 60%),radial-gradient(900px 480px at -10% 110%,rgba(6,182,212,.22),transparent 55%),linear-gradient(135deg,var(--hero1) 0%,var(--hero2) 55%,var(--hero3) 100%);color:#fff;padding:108px 22px 72px;position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px);background-size:44px 44px;pointer-events:none;mask-image:linear-gradient(180deg,transparent,#000 30%,#000 70%,transparent)}
+.hero-inner{max-width:1180px;margin:0 auto;position:relative;z-index:2}
+.hero .kicker{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:700;letter-spacing:2px;color:#c7d2fe;background:rgba(255,255,255,.09);border:1px solid rgba(199,210,254,.25);padding:6px 14px;border-radius:99px;margin-bottom:22px}
+.hero .kicker .dot{width:7px;height:7px;border-radius:99px;background:#34d399;box-shadow:0 0 10px #34d399}
+.hero h1{font-size:clamp(28px,4.6vw,46px);font-weight:900;line-height:1.28;letter-spacing:.5px;max-width:900px}
+.hero h1 em{font-style:normal;background:linear-gradient(90deg,#a5b4fc,#e879f9,#67e8f9);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.hero .desc{margin-top:18px;max-width:830px;color:#c3c9de;font-size:15.5px}
+.hero .desc b{color:#fff;font-weight:700}
+.hero-meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.hero-meta span{font-size:12.5px;font-weight:600;color:#dbe2f5;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);padding:5px 13px;border-radius:99px}
+.stat-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin-top:40px}
+.stat-card{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:16px;padding:18px 20px;backdrop-filter:blur(6px)}
+.stat-card .num{font-size:26px;font-weight:900;background:linear-gradient(90deg,#e0e7ff,#f5d0fe);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:.3px}
+.stat-card .lbl{font-size:12.5px;color:#aab3d0;margin-top:3px;line-height:1.5}
+
+/* ===== 版面骨架 ===== */
+main{max-width:1180px;margin:0 auto;padding:26px 22px 80px}
+section{margin-top:64px}
+.sec-head{display:flex;gap:16px;align-items:flex-start;margin-bottom:26px}
+.sec-head .no{flex:none;width:46px;height:46px;border-radius:13px;background:linear-gradient(135deg,#4f46e5,#a855f7);color:#fff;display:grid;place-items:center;font-size:19px;font-weight:900;box-shadow:0 6px 16px -6px rgba(79,70,229,.55)}
+.sec-head h2{font-size:clamp(21px,2.6vw,27px);font-weight:900;letter-spacing:.3px}
+.sec-head .sub{color:var(--sub);font-size:13.5px;margin-top:4px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
+.pad{padding:26px 28px}
+.callout{border-left:4px solid var(--accent);background:var(--soft);border-radius:0 12px 12px 0;padding:16px 20px;font-size:14px;color:#374151;margin:18px 0}
+.callout b{color:var(--ink)}
+.callout.warn{border-left-color:#d97706;background:#fffbeb}
+.callout.danger{border-left-color:#dc2626;background:#fef2f2}
+.grid-2{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:18px}
+.grid-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px}
+h3.mini{font-size:16.5px;font-weight:800;margin:0 0 10px;display:flex;align-items:center;gap:8px}
+h3.mini::before{content:"";width:4px;height:16px;border-radius:4px;background:linear-gradient(180deg,#4f46e5,#a855f7)}
+p.body{color:#3d4658;font-size:14.5px;margin-bottom:10px;text-align:justify}
+ul.dash{list-style:none;margin:6px 0 10px}
+ul.dash li{padding-left:20px;position:relative;color:#3d4658;font-size:14px;margin:6px 0}
+ul.dash li::before{content:"—";position:absolute;left:0;color:var(--accent);font-weight:800}
+.tbl{width:100%;border-collapse:collapse;font-size:13.5px}
+.tbl th{background:#f4f5fb;text-align:left;padding:10px 12px;font-weight:800;color:#39415a;border-bottom:2px solid var(--line);white-space:nowrap}
+.tbl td{padding:9px 12px;border-bottom:1px solid #edf0f6;color:#414b60;vertical-align:top}
+.tbl tr:hover td{background:#fafbff}
+.tag{display:inline-block;font-size:11.5px;font-weight:700;padding:2px 9px;border-radius:99px;background:var(--soft);color:var(--accent);border:1px solid #dfe3fb}
+
+/* ===== 图表容器 ===== */
+.chart-card{padding:22px 24px 16px}
+.chart-card .c-title{font-size:15px;font-weight:800;margin-bottom:2px}
+.chart-card .c-sub{font-size:12px;color:var(--sub);margin-bottom:14px}
+.chart-wrap{width:100%;overflow-x:auto}
+.chart-wrap svg{display:block;width:100%;height:auto}
+.legend{display:flex;flex-wrap:wrap;gap:8px 16px;margin-top:12px;font-size:12px;color:var(--sub)}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend i{width:10px;height:10px;border-radius:3px;display:inline-block}
+#tooltip{position:fixed;z-index:2000;background:#101629;color:#fff;font-size:12.5px;line-height:1.55;padding:8px 12px;border-radius:9px;pointer-events:none;opacity:0;transition:opacity .12s;max-width:280px;box-shadow:0 10px 28px -8px rgba(0,0,0,.5)}
+
+/* ===== 产品卡片 ===== */
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
+.filters button{border:1.5px solid var(--line);background:#fff;color:#4b5568;font-size:13px;font-weight:700;padding:7px 15px;border-radius:99px;cursor:pointer;transition:.18s;font-family:inherit}
+.filters button:hover{border-color:#c7cdfa;color:var(--accent)}
+.filters button.on{background:linear-gradient(135deg,#4f46e5,#7c3aed);border-color:transparent;color:#fff;box-shadow:0 5px 14px -5px rgba(79,70,229,.5)}
+.prod{background:#fff;border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);margin-bottom:30px;overflow:hidden;scroll-margin-top:80px;border-top:4px solid var(--cat,#4f46e5)}
+.prod-head{display:flex;gap:16px;align-items:center;padding:22px 26px 16px;background:linear-gradient(180deg,#fbfbff, #fff)}
+.prod-ava{flex:none;width:54px;height:54px;border-radius:15px;background:linear-gradient(135deg,var(--cat),color-mix(in srgb,var(--cat) 55%,#000 0%));display:grid;place-items:center;color:#fff;font-weight:900;font-size:19px;letter-spacing:.5px;box-shadow:0 8px 18px -8px var(--cat)}
+.prod-head h3{font-size:19px;font-weight:900;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.prod-head h3 a{color:inherit;text-decoration:none}
+.prod-head .tagline{color:var(--sub);font-size:13.5px;margin-top:3px}
+.prod-score{margin-left:auto;text-align:center;flex:none;background:linear-gradient(160deg,#0b1024,#372a6e);color:#fff;border-radius:14px;padding:10px 16px;min-width:86px}
+.prod-score .v{font-size:23px;font-weight:900;color:#fbbf24;line-height:1.1}
+.prod-score .l{font-size:10.5px;color:#b9c1e0;letter-spacing:1px;margin-top:2px}
+.statrow{display:flex;flex-wrap:wrap;gap:8px;padding:0 26px 16px}
+.statrow .s{font-size:12.5px;background:#f5f6fb;border:1px solid #e8eaf4;border-radius:10px;padding:6px 12px;color:#414b60}
+.statrow .s b{color:var(--ink);font-weight:800}
+.prod-body{padding:6px 26px 24px;border-top:1px dashed var(--line)}
+.prod-body h4{font-size:14.5px;font-weight:800;color:var(--cat);margin:18px 0 6px;display:flex;align-items:center;gap:8px}
+.prod-body h4 .n{flex:none;width:21px;height:21px;border-radius:7px;background:var(--cat);color:#fff;display:grid;place-items:center;font-size:11.5px;font-weight:800}
+.prod-body p{color:#3d4658;font-size:14.2px;text-align:justify}
+.moat-bars{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin:12px 0 4px}
+.moat-bar{background:#f7f8fc;border:1px solid #eef0f7;border-radius:10px;padding:8px 12px}
+.moat-bar .t{font-size:11.5px;font-weight:700;color:#5b6478;display:flex;justify-content:space-between}
+.moat-bar .t b{color:var(--cat)}
+.moat-bar .bar{height:6px;border-radius:6px;background:#e8eaf3;margin-top:6px;overflow:hidden}
+.moat-bar .bar i{display:block;height:100%;border-radius:6px;background:linear-gradient(90deg,var(--cat),color-mix(in srgb,var(--cat) 45%,#fff))}
+.verdict{display:flex;gap:12px;align-items:flex-start;background:linear-gradient(90deg,#fffbeb,#fff8eb);border:1px solid #fde8bd;border-radius:12px;padding:14px 16px;margin-top:16px}
+.verdict .ic{flex:none;font-size:18px}
+.verdict p{font-size:13.5px!important;color:#5a4a1f!important}
+
+/* 失败案例卡 */
+.fail{border-top:4px solid #dc2626}
+.fail .prod-ava{background:linear-gradient(135deg,#dc2626,#7f1d1d)!important;box-shadow:0 8px 18px -8px #dc2626!important}
+.fail .prod-body h4{color:#b91c1c}
+.fail .prod-body h4 .n{background:#dc2626}
+
+/* 时间线 */
+.timeline{position:relative;padding-left:26px}
+.timeline::before{content:"";position:absolute;left:8px;top:6px;bottom:6px;width:2.5px;border-radius:4px;background:linear-gradient(180deg,#4f46e5,#a855f7,#ec4899)}
+.timeline .tl{position:relative;margin-bottom:16px}
+.timeline .tl::before{content:"";position:absolute;left:-23px;top:7px;width:11px;height:11px;border-radius:99px;background:#fff;border:3px solid var(--accent)}
+.timeline .tl b{font-size:13.8px}
+.timeline .tl p{font-size:13px;color:#4b5568}
+
+/* 热力图 */
+.heat-wrap{overflow-x:auto}
+table.heat{border-collapse:separate;border-spacing:3px;font-size:12.5px;min-width:860px}
+table.heat th{font-weight:800;color:#39415a;padding:6px 8px;text-align:center;white-space:nowrap}
+table.heat th.rw{text-align:left;position:sticky;left:0;background:#fff;z-index:2}
+table.heat td{text-align:center;padding:0;border-radius:7px;overflow:hidden}
+table.heat td.rw{text-align:left;font-weight:700;color:#31405e;background:#fff!important;padding:6px 10px;position:sticky;left:0;white-space:nowrap}
+table.heat td.cell{width:56px;height:34px;color:#fff;font-weight:800;font-size:12px}
+.heat-note{font-size:11.5px;color:var(--sub);margin-top:10px}
+
+footer{background:#0d1128;color:#8e97b8;padding:36px 22px;font-size:12.5px;text-align:center;line-height:2}
+footer b{color:#dfe4f5}
+
+#top-btn{position:fixed;right:22px;bottom:24px;width:44px;height:44px;border-radius:13px;border:none;background:linear-gradient(135deg,#4f46e5,#7c3aed);color:#fff;font-size:18px;cursor:pointer;opacity:0;pointer-events:none;transition:.25s;z-index:900;box-shadow:0 10px 24px -8px rgba(79,70,229,.7)}
+#top-btn.show{opacity:1;pointer-events:auto}
+
+@media (max-width:640px){
+  .nav-inner{padding:0 14px;gap:8px}
+  .brand small{display:none}
+  .pad{padding:20px 18px}
+  .prod-head,.statrow,.prod-body{padding-left:18px;padding-right:18px}
+  .prod-score{padding:8px 12px}
+}
+@media print{
+  nav,#top-btn,#progress,#tooltip,.filters{display:none!important}
+  .hero{padding:40px 18px}
+  body{background:#fff}
+  .prod,.card{box-shadow:none;break-inside:avoid;page-break-inside:avoid}
+  section{margin-top:34px}
+}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+<nav>
+  <div class="nav-inner">
+    <div class="brand"><div class="logo">AI</div>MOAT·2026<small>高护城河AI产品深度分析</small></div>
+    <div class="nav-links">
+      <a href="#method">研究方法</a>
+      <a href="#landscape">行业格局</a>
+      <a href="#products">产品深评</a>
+      <a href="#compare">横向对比</a>
+      <a href="#failures">失败启示</a>
+      <a href="#outlook">趋势展望</a>
+      <a href="#appendix">附录</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-inner">
+    <div class="kicker"><span class="dot"></span>数据截至 2026 年 9 月 · 覆盖 Forbes AI 50 / CB Insights AI 100 / a16z Top 100 等权威榜单（2024–2026）</div>
+    <h1>全球<em>高护城河 AI 产品</em><br>全生命周期深度分析报告</h1>
+    <p class="desc">本报告以最近两年各行业、各细分领域的权威 AI 产品榜单为起点，用三重标准——<b>① 长期竞争壁垒与可增强的商业护城河</b>（受模型迭代影响小、难以复制）、<b>② 已验证的变现能力</b>、<b>③ 未来 3 / 5 / 10 年的市场空间</b>——从数百款上榜产品中筛选出 <b>20 款代表产品</b>，逐一还原其设计灵感来源、设计理念、竞争攻防、前瞻洞见、护城河构建与商业化结局的完整生命周期，并以 <b>6 类图表 + 护城河热力矩阵</b>进行横向量化对比，同时收录失败案例作为反面对照组。</p>
+    <div class="hero-meta">
+      <span>筛选漏斗：5 大榜单 × 2 年 → 20 款入选</span>
+      <span>9 大赛道 · 前沿模型 / 垂直应用 / 基础设施</span>
+      <span>6 维护城河评分模型</span>
+      <span>4 个失败案例解剖</span>
+    </div>
+    <div class="stat-cards">
+      <div class="stat-card"><div class="num">20 款</div><div class="lbl">通过三重标准筛选的<br>高护城河 AI 产品</div></div>
+      <div class="stat-card"><div class="num">≈ $600 亿+</div><div class="lbl">入选产品合计年化收入<br>（ARR，含模型层口径）</div></div>
+      <div class="stat-card"><div class="num">9 / 20</div><div class="lbl">垂直行业 AI（法律/医疗/客服/<br>金融/GTM）占比 45%</div></div>
+      <div class="stat-card"><div class="num">≈ 12 个月</div><div class="lbl">最快达到 $1 亿 ARR 用时<br>（ElevenLabs）</div></div>
+      <div class="stat-card"><div class="num">80%</div><div class="lbl">第三方预测将倒下的<br>「薄壳 wrapper」比例</div></div>
+    </div>
+  </div>
+</header>
+<main>
+<!-- ================= 第一章 研究方法 ================= -->
+<section id="method">
+  <div class="sec-head">
+    <div class="no">01</div>
+    <div><h2>研究方法与筛选漏斗</h2><div class="sub">如何从数百款上榜产品中「一个不漏」地筛出真正有护城河的 AI 产品</div></div>
+  </div>
+  <div class="card pad">
+    <h3 class="mini">1.1 榜单池（2024–2026，最近两年）</h3>
+    <p class="body">本报告的系统梳理对象覆盖以下五类权威榜单及其 2024–2026 两届名单，合并去重后共得到约 200 余款独立产品：</p>
+    <ul class="dash">
+      <li><b>Forbes AI 50</b>（2025 / 2026 两届）：2026 年第八届，50 家公司累计融资 $305.6B，其中 OpenAI 与 Anthropic 两家占约 80%（$242.6B），新晋 20 家（Rogo、Gamma、Chai Discovery 等）；</li>
+      <li><b>CB Insights AI 100</b>（2025 / 2026 两届）：2026 年第十届，入选公司累计融资 $109 亿，约 1/5 位于美国以外；</li>
+      <li><b>a16z Top 100 GenAI Apps</b>（2024 / 2025 两届）：按月活与收入排名的消费级 / 企业级生成式 AI 应用榜；</li>
+      <li><b>TIME 最佳发明（AI 类）与 G2 Best Software</b>（2024 / 2025）：补充产品口碑与用户评价维度；</li>
+      <li><b>公开财务口径追踪</b>：TechCrunch、Financial Times、Sacra、Forbes 报道及各公司融资公告（2024.1–2026.9）。</li>
+    </ul>
+    <h3 class="mini" style="margin-top:22px">1.2 三重筛选标准（对应任务第一步骤）</h3>
+    <div class="grid-3" style="margin-top:12px">
+      <div class="card pad" style="box-shadow:none">
+        <h3 class="mini" style="color:#4f46e5">标准一 · 护城河</h3>
+        <p class="body" style="font-size:13.5px">已形成长期竞争壁垒且可随使用持续增强（数据飞轮、工作流嵌入、网络效应、分发 / 品牌、合规资质、结果定价权），<b>受底层模型迭代影响小甚至反向受益</b>，竞品难以复制。对照基准：Bessemer「五大护城河」框架（数据飞轮 / 工作流集成 / 分发 / 品牌 / 网络效应）。</p>
+      </div>
+      <div class="card pad" style="box-shadow:none">
+        <h3 class="mini" style="color:#7c3aed">标准二 · 变现能力</h3>
+        <p class="body" style="font-size:13.5px">已有可验证的商业化证据：ARR 规模与增速、客单价与合同形态（席位 / 用量 / 按结果计价）、毛利率结构、盈利或正现金流。纯讲故事、无收入披露的产品一律剔除。</p>
+      </div>
+      <div class="card pad" style="box-shadow:none">
+        <h3 class="mini" style="color:#db2777">标准三 · 长期空间</h3>
+        <p class="body" style="font-size:13.5px">未来 3 / 5 / 10 年仍有巨大市场发展潜力：TAM 足够大（对标劳动力预算而非 IT 预算）、渗透率低、多扩展曲面（从单点工具到平台 / 基础设施）。</p>
+      </div>
+    </div>
+    <h3 class="mini" style="margin-top:24px">1.3 筛选漏斗与结果</h3>
+    <div id="funnelChart" class="chart-wrap"></div>
+    <div class="callout">
+      <b>口径说明（重要）：</b>入选的 20 款产品为「通过三重标准且具备完整生命周期叙事价值」的全部代表——前沿模型层 2、数据与基础设施层 2、开发者工具 2、法律科技 3、医疗健康 2、客户体验 2、知识与搜索 2、创意内容 3、金融与商务 2。同榜单中未入选产品主要败于：护城河依赖单一模型能力（如部分 wrapper 类）、变现未经验证、或所属赛道长期空间受限。私营公司财务数据均为<b>公开报道与第三方估计口径</b>，时点存在差异，仅供研究参考。
+    </div>
+  </div>
+</section>
+
+<!-- ================= 第二章 行业格局 ================= -->
+<section id="landscape">
+  <div class="sec-head">
+    <div class="no">02</div>
+    <div><h2>行业格局总览（2024–2026）</h2><div class="sub">钱在哪里、壁垒在哪里、增长在哪里</div></div>
+  </div>
+  <div class="grid-2">
+    <div class="card chart-card">
+      <div class="c-title">入选产品赛道分布</div>
+      <div class="c-sub">20 款产品 × 9 大赛道 · 颜色与后文产品卡一致</div>
+      <div id="donutChart" class="chart-wrap"></div>
+    </div>
+    <div class="card chart-card">
+      <div class="c-title">市场结构速览：三层火箭</div>
+      <div class="c-sub">模型层吃资本 · 基础设施层收税 · 应用层吃工作流</div>
+      <div style="padding:4px 2px 10px">
+        <ul class="dash">
+          <li><b>模型层（双寡头）：</b>Forbes AI 50 2026 五十强累计融资 $305.6B，OpenAI + Anthropic 占 80%（$242.6B）；年化收入分别超 $250 亿（2026.2）与 $300 亿（2026.4 报道口径）——资本与算力门槛已高到几乎不可进入。</li>
+          <li><b>基础设施层（卖铲人）：</b>Databricks 以 $188B 估值（2026.7）成为「AI 第二幕」最大赢家——无论哪家模型胜出，企业都要先治理数据；Mercor 类数据供应商把「专家级人类反馈」变成稀缺商品。</li>
+          <li><b>应用层（垂直为王）：</b>Bessemer 判断：垂直 AI 是比垂直 SaaS 大 10 倍的机会——它争夺的是占美国 GDP 13% 的<b>劳动力预算</b>，而非仅占 1% 的 IT 预算。2026 年最快的一批公司（Legora 18 个月、ElevenLabs 约 12 个月达 $1 亿 ARR）全部来自垂直或专用工作流。</li>
+          <li><b>反面：</b>CB Insights / Gartner 口径预测约 80% 的「薄壳 wrapper」将在 2026 年底前出局；OpenAI 一年内通过原生功能吸收了 200+ 获投 wrapper 的核心功能。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="grid-2" style="margin-top:18px">
+    <div class="card chart-card">
+      <div class="c-title">护城河六维模型（本报告评分框架）</div>
+      <div class="c-sub">综合评分为六维加权主观分（0–10），维度分 0–5</div>
+      <div id="moatRadarLegend" class="legend"></div>
+      <div id="moatRadar" class="chart-wrap"></div>
+    </div>
+    <div class="card chart-card">
+      <div class="c-title">关键赛道资金与规模信号（2026）</div>
+      <div class="c-sub">公开报道口径</div>
+      <table class="tbl">
+        <tr><th>赛道</th><th>规模信号</th><th>代表产品</th></tr>
+        <tr><td>客服 / 客户体验</td><td>全球客服成本池约 $4000 亿/年；按解决量计价 ≈ $1.5/次</td><td>Sierra、Decagon</td></tr>
+        <tr><td>法律</td><td>2026 上半年 16 笔交易、约 $10 亿融资；法律 AI 市场 $55.9 亿（+22%/年）</td><td>Harvey、Legora、EvenUp</td></tr>
+        <tr><td>医疗文书与收入周期</td><td>美国 RCM 市场 $2500 亿+；仅「预授权」年耗 $310 亿</td><td>Abridge、OpenEvidence</td></tr>
+        <tr><td>开发者工具</td><td>Cursor 0→$20 亿 ARR 约 3 年；企业 AI 编程采用已成默认</td><td>Cursor、Cognition</td></tr>
+        <tr><td>企业数据与 AI 平台</td><td>Databricks Series L $134B（史上最大私有软件轮）</td><td>Databricks</td></tr>
+        <tr><td>金融 / 保险代理</td><td>银行业与保险业生产级 AI 代理采用率 47%（各行业最高）</td><td>Ramp、Mercor</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 第三章 产品深度分析 ================= -->
+<section id="products">
+  <div class="sec-head">
+    <div class="no">03</div>
+    <div><h2>20 款产品全生命周期深度分析</h2><div class="sub">灵感起源 → 设计理念 → 竞争攻防 → 前瞻洞见 → 护城河结构 → 变现 → 生命周期评估 → 3/5/10 年展望</div></div>
+  </div>
+  <div class="callout">每款产品的分析均遵循统一的八段生命周期框架，确保「一个不漏、逐项对齐」；卡片右上角为<b>护城河综合评分</b>（六维加权，满分 10）。点击下方标签可按赛道过滤。</div>
+  <div class="filters" id="filters"></div>
+  <div class="card pad" style="margin-bottom:26px">
+    <h3 class="mini">产品速览索引（点击产品名跳转至完整八段分析）</h3>
+    <div class="heat-wrap" id="prodIndex"></div>
+  </div>
+  <div id="prodGrid"></div>
+</section>
+
+<!-- ================= 第四章 横向对比 ================= -->
+<section id="compare">
+  <div class="sec-head">
+    <div class="no">04</div>
+    <div><h2>横向量化对比</h2><div class="sub">钱、速度、壁垒三个维度的交叉验证</div></div>
+  </div>
+  <div class="grid-2">
+    <div class="card chart-card">
+      <div class="c-title">前沿模型层年化收入（ARR / Run-rate）</div>
+      <div class="c-sub">单位：十亿美元 · 2026 年报道口径</div>
+      <div id="arrModelChart" class="chart-wrap"></div>
+    </div>
+    <div class="card chart-card">
+      <div class="c-title">应用与基础设施层 ARR</div>
+      <div class="c-sub">单位：百万美元 · 公开报道 / 估计口径，含备注</div>
+      <div id="arrAppChart" class="chart-wrap"></div>
+    </div>
+  </div>
+  <div class="card chart-card" style="margin-top:18px">
+    <div class="c-title">估值 × ARR × 护城河评分气泡图</div>
+    <div class="c-sub">横轴 ARR 对数刻度（$M）· 纵轴估值（$B，对数刻度）· 气泡大小 = 综合评分 · 悬停查看详情</div>
+    <div id="scatterChart" class="chart-wrap"></div>
+    <div id="scatterLegend" class="legend"></div>
+  </div>
+  <div class="grid-2" style="margin-top:18px">
+    <div class="card chart-card">
+      <div class="c-title">冲刺速度：达到 $1 亿 ARR 所用时间</div>
+      <div class="c-sub">月 · 自核心产品上线起算 · 斜纹为按报道推算值</div>
+      <div id="speedChart" class="chart-wrap"></div>
+    </div>
+    <div class="card chart-card">
+      <div class="c-title">ARR 增长曲线（2023–2026 公开节点）</div>
+      <div class="c-sub">纵轴对数刻度（$M）· 部分节点为报道推算</div>
+      <div id="growthChart" class="chart-wrap"></div>
+      <div id="growthLegend" class="legend"></div>
+    </div>
+  </div>
+  <div class="card chart-card" style="margin-top:18px">
+    <div class="c-title">护城河热力矩阵：20 款产品 × 六大壁垒维度</div>
+    <div class="c-sub">0–5 分 · 颜色越深壁垒越强 · 由本报告分析框架评定</div>
+    <div class="heat-wrap" id="heatTable"></div>
+    <div class="heat-note">评分依据：公开披露的数据资产、部署规模、合同形态、定价权与网络效应证据，详见各产品卡「护城河结构」段落。0 = 无壁垒，5 = 极强且自我增强。</div>
+  </div>
+  <div class="card chart-card" style="margin-top:18px">
+    <div class="c-title">护城河综合评分排行</div>
+    <div class="c-sub">六维加权（数据 25% / 工作流 20% / 分发 15% / 定价权 15% / 网络效应 15% / 规模成本 10%）</div>
+    <div id="rankChart" class="chart-wrap"></div>
+  </div>
+</section>
+<!-- ================= 第五章 失败启示 ================= -->
+<section id="failures">
+  <div class="sec-head">
+    <div class="no">05</div>
+    <div><h2>反面教材：护城河失效的四种死法</h2><div class="sub">对照组合——为什么同场竞技的大多数 AI 产品没能形成壁垒</div></div>
+  </div>
+  <div class="callout danger">理解护城河最快的方式是研究它缺席时的死法。以下四个案例全部来自同一批 2022–2024 年榜单的明星产品——它们曾拥有资本、流量与先发优势，却在 12–24 个月内被结构性击穿。结合 CB Insights / Gartner 的「80% wrapper 将出局」预测与 OpenAI 一年吸收 200+ 获投 wrapper 功能的记录，可以提炼出 AI 产品的<b>五种典型失败模式</b>。</div>
+  <div id="failGrid"></div>
+  <div class="card pad" style="margin-top:22px">
+    <h3 class="mini">五种失败模式（对照入选产品的五种活法）</h3>
+    <table class="tbl">
+      <tr><th>失败模式</th><th>症状</th><th>反例（活法）</th></tr>
+      <tr><td><b>① 薄壳化</b></td><td>产品价值 = 模型访问权 + UI 皮肤；SimpleClosure 统计 60–70% wrapper 零收入；90 天流失率约 65%（SaaS 均值约 35%）</td><td>Cursor 同样始于 wrapper，但把重注押在交互重构与代码库索引上，长成 $2B ARR</td></tr>
+      <tr><td><b>② 无专有数据</b></td><td>用同样的公开模型、公开数据、公有云，能力无差异；开源追平后即刻商品化</td><td>Harvey（律所私有语料）、Abridge（1.5 亿次真实医患对话）、EvenUp（最大 PI 判例库）</td></tr>
+      <tr><td><b>③ 模型层碾压</b></td><td>基础模型一次版本更新就把你的核心功能变成免费标配</td><td>OpenEvidence 用出版商独家授权语料筑「模型爬不到的数据」；Glean 靠权限感知治理而非检索本身</td></tr>
+      <tr><td><b>④ 无分发</b></td><td>技术好但买不到用户；获客成本高于客户终身价值</td><td>Midjourney 用 Discord 社区分发（零营销预算）；OpenEvidence 用免费策略绕过医院采购</td></tr>
+      <tr><td><b>⑤ 估值透支</b></td><td>估值远跑在收入前面，一轮融资失败即崩盘</td><td>Ramp、Midjourney 以正现金流 / 盈利纪律对冲资本市场波动</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- ================= 第六章 趋势展望 ================= -->
+<section id="outlook">
+  <div class="sec-head">
+    <div class="no">06</div>
+    <div><h2>趋势展望：3 年 · 5 年 · 10 年</h2><div class="sub">把 20 款产品的生命周期轨迹外推成一张路线图</div></div>
+  </div>
+  <div class="grid-3">
+    <div class="card pad">
+      <h3 class="mini" style="color:#4f46e5">未来 3 年（2026–2029）</h3>
+      <ul class="dash">
+        <li><b>代理商业化决胜：</b>竞争焦点从「会聊天」转向「能交付」；按结果计价（Sierra 的 $1.5/解决、EvenUp 的按案计价）从创新变成默认合同形态。</li>
+        <li><b>wrapper 大清洗完成：</b>80% 薄壳产品出局，资本向已验证工作流护城河的少数玩家集中（法律、金融、客服赛道最先决出寡头）。</li>
+        <li><b>垂直 AI 渗透加速：</b>客服（$4000 亿成本池）、法律文书、临床文书、收入周期进入主流采购；银行保险 47% 的代理采用率向其他行业扩散。</li>
+        <li><b>IPO 窗口开启：</b>Perplexity 等瞄准 2028 上市，Databricks、Ramp 等巨头级公司证券化，AI 应用层首次接受公开市场定价检验。</li>
+      </ul>
+    </div>
+    <div class="card pad">
+      <h3 class="mini" style="color:#7c3aed">未来 5 年（至 2031）</h3>
+      <ul class="dash">
+        <li><b>从软件预算到劳动预算：</b>垂直 AI 按 Bessemer 框架争夺占 GDP 13% 的劳动力支出——单一客户的可获取收入天花板抬升 10 倍。</li>
+        <li><b>平台整合期：</b>模型 + 数据 + 代理运行时收敛为企业 AI 平台（Databricks、Glean 路线）；应用层出现 20–30 家「垂直百角兽」。</li>
+        <li><b>代理商务基础设施成型：</b>AI 代理替人花钱、替人决策，Ramp 类「代理支出管理」与新支付协议成为新的收税层。</li>
+        <li><b>开源与闭源分层定价：</b>开放权重模型（GLM、Llama、Mistral）吃掉中低复杂度负载，闭源前沿模型退守高价值推理市场。</li>
+      </ul>
+    </div>
+    <div class="card pad">
+      <h3 class="mini" style="color:#db2777">未来 10 年（至 2036）</h3>
+      <ul class="dash">
+        <li><b>软件即劳动力：</b>企业软件的计价单位从「席位」彻底转向「完成的工作量」；薪酬表与软件预算合并为「人 + 代理」混合编制。</li>
+        <li><b>行业结构三段式：</b>前沿模型双寡头（或三寡头）+ 基础设施收税层（数据 / 治理 / 支付）+ 垂直应用百角兽矩阵。</li>
+        <li><b>专业服务重构：</b>法律、医疗、财务的金字塔结构被「AI 初级员工 + 人类合伙人」重塑——Harvey / Abridge / Rogo 类产品成为行业默认基础设施。</li>
+        <li><b>最大变数：</b>模型能力跃迁（若通用代理可靠性突破，应用层壁垒将被压缩；若停滞，工作流与数据护城河价值进一步放大）。</li>
+      </ul>
+    </div>
+  </div>
+  <div class="card pad" style="margin-top:18px">
+    <h3 class="mini">生命周期视角的三条元规律（跨产品复盘结论）</h3>
+    <div class="timeline" style="margin-top:12px">
+      <div class="tl"><b>规律一：灵感来自「一线痛点 × 技术窗口」的交点</b><p>所有 20 款成功产品的起点都不是「做一个 AI 产品」，而是创始人本人在一线观察到的具体损耗（Abridge 创始人是 cardiologist、EvenUp 看到人身伤害律师的重复劳动、Sierra 看到客服 ROI 可测），恰逢 2022–2023 年模型能力跨越可用阈值——先有任务，后有技术。</p></div>
+      <div class="tl"><b>规律二：护城河是「设计出来的」，不是「烧出来的」</b><p>变现最持久的产品在第一版就内嵌了壁垒机制：Harvey 的保密架构、Abridge 的 Epic 嵌入、Sierra 的结果计价、Midjourney 的社区共创。而失败产品普遍把融资烧在买量上，没有在数据、工作流或分发上沉淀任何不可复制资产。</p></div>
+      <div class="tl"><b>规律三：模型迭代是筛子，不是末日</b><p>每次前沿模型升级都会淘汰一批薄壳产品，但同时放大「拥有模型无法自带资产」的产品——模型越强，企业对治理（Databricks / Glean）、数据（Mercor / Harvey）、责任承担（Sierra / EvenUp）的需求越刚性。这是 20 款产品共同的生存密码。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 附录 ================= -->
+<section id="appendix">
+  <div class="sec-head">
+    <div class="no">07</div>
+    <div><h2>附录：筛选全记录、数据口径与参考来源</h2><div class="sub">哪些产品被评估过、为何落选，以及全部数据的口径边界</div></div>
+  </div>
+  <div class="card pad">
+    <h3 class="mini">A. 筛选全记录：评估过但未入选的代表产品及落选原因</h3>
+    <p class="body">为保证「一个不漏」，下表完整披露进入评估视野、但未通过三重标准的代表性产品（含荣誉提名与观察名单）。落选不等于否定——多数是同一原型下让位于更强的代表，或变现验证尚早。</p>
+    <table class="tbl">
+      <tr><th>产品 / 公司</th><th>赛道</th><th>关键事实（公开口径）</th><th>落选原因（对照三重标准）</th><th>关联案例</th></tr>
+      <tr><td colspan="5" style="background:#f8f9fd;font-weight:800;color:#4f46e5">组一 · 护城河受结构性侵蚀或未验证</td></tr>
+      <tr><td><b>Scale AI</b></td><td>数据标注</td><td>曾为行业龙头；2025 年 Meta 获约半数股权并聘走创始人 Alexandr Wang</td><td>标准一受损：竞争对手控制股权导致核心客户流失，数据生意的中立性根基被动摇</td><td>对照 Mercor（以中立定位承接份额）</td></tr>
+      <tr><td><b>Lovable</b></td><td>消费级应用生成</td><td>14 个月约 $4–5 亿 ARR，史上最快之列</td><td>标准一存疑：产品层较薄、留存与模型层挤压风险未经周期验证——<b>观察名单第一位</b></td><td>对照 Cursor（同为 wrapper 起点）</td></tr>
+      <tr><td><b>Mistral AI</b></td><td>开源模型</td><td>企业客户含 Cisco 与欧洲政府机构，主权叙事鲜明</td><td>标准二量级差距：收入与双寡头差一个量级，开源 + 主权尚未完全兑现为收入规模</td><td>对照 Anthropic</td></tr>
+      <tr><td><b>Suno</b></td><td>AI 音乐</td><td>消费级音乐生成领先、用户增长快</td><td>标准一 / 三存疑：版权诉讼未决，商业化天花板待验证</td><td>对照 Midjourney（社区 + 品味路线）</td></tr>
+      <tr><td colspan="5" style="background:#f8f9fd;font-weight:800;color:#7c3aed">组二 · 变现未验证或披露不足</td></tr>
+      <tr><td><b>Surge AI</b></td><td>数据标注</td><td>报道口径收入超 $10 亿且盈利</td><td>披露不足：理论上符合三重标准，但公开材料无法支撑八段生命周期分析——<b>本报告最大遗憾</b></td><td>对照 Mercor</td></tr>
+      <tr><td><b>Thinking Machines Lab</b></td><td>模型</td><td>融资 $20 亿（Mira Murati 创立）</td><td>标准二未满足：产品尚未正式发布</td><td>—</td></tr>
+      <tr><td><b>Safe Superintelligence</b></td><td>模型</td><td>Ilya Sutskever 创立、巨额融资</td><td>标准二未满足：研究导向，无公开产品收入</td><td>—</td></tr>
+      <tr><td><b>Physical Intelligence / Figure / Skild</b></td><td>机器人 / 物理智能</td><td>大额融资，Physical Intelligence 单轮 $10 亿</td><td>标准二未满足：商业化尚早——十年维度的候选名单</td><td>—</td></tr>
+      <tr><td colspan="5" style="background:#f8f9fd;font-weight:800;color:#047857">组三 · 赛道代表权让位（同原型已有更强代表入选）</td></tr>
+      <tr><td><b>Rogo</b></td><td>金融分析 AI</td><td>约 2.5 万名银行家与投资人使用（Forbes AI 50 2026 新晋）</td><td><b>荣誉提名第一名</b>：符合「垂直专业 AI」原型，公开生命周期材料少于法律 / 医疗代表</td><td>对照 Harvey / Legora</td></tr>
+      <tr><td><b>EliseAI</b></td><td>地产 / 医疗垂直代理</td><td>多垂直部署、收入过亿</td><td>同原型已被 Sierra / Decagon / Abridge 更强代表覆盖</td><td>对照 Sierra</td></tr>
+      <tr><td><b>Ambience / Suki</b></td><td>医疗 scribe</td><td>与 Abridge 同赛道竞争</td><td>被 Abridge（KLAS 第一、Epic 深度集成、250+ 系统）压制</td><td>对照 Abridge</td></tr>
+      <tr><td><b>Brex / Mercury</b></td><td>企业金融</td><td>与 Ramp 同赛道</td><td>让位于 Ramp（正现金流 + AI 原生叙事更完整）</td><td>对照 Ramp</td></tr>
+      <tr><td><b>Replit / Bolt / v0</b></td><td>编程工具</td><td>各有特色用户群</td><td>让位于 Cursor（规模与产品深度）与 Cognition（自主路线代表）</td><td>对照 Cursor</td></tr>
+      <tr><td><b>Runway / Synthesia / HeyGen</b></td><td>视频生成</td><td>视频赛道头部，各有企业客户</td><td>视频生成商业化节奏慢于图像 / 语音；Runway 面临模型层激烈竞争，HeyGen 场景易被原生化</td><td>对照 ElevenLabs</td></tr>
+      <tr><td colspan="5" style="background:#f8f9fd;font-weight:800;color:#b45309">组四 · 巨头子产品（无法按独立公司维度评估）</td></tr>
+      <tr><td><b>GitHub Copilot（微软）</b></td><td>编程 AI</td><td>分发之王，AI 收入并入 GitHub $20 亿+ 口径</td><td>非独立公司；作为 Cursor 的主要对手在正文反复出现</td><td>对照 Cursor</td></tr>
+      <tr><td><b>Microsoft Copilot / Google Gemini</b></td><td>通用企业 / 消费 AI</td><td>生态与分发优势最大</td><td>非独立公司；作为 Glean、Perplexity 的核心对照变量出现</td><td>对照 Glean / Perplexity</td></tr>
+      <tr><td><b>Meta AI / xAI Grok</b></td><td>消费 AI</td><td>巨大分发与算力</td><td>非独立公司，财务未独立披露</td><td>—</td></tr>
+    </table>
+    <div class="callout" style="margin-bottom:0"><b>观察名单（下一版优先复核）：</b>Lovable（增长奇迹 vs 护城河存疑）、Rogo（垂直专业 AI 的金融样本）、Surge AI（盈利但披露不足）、Mistral（主权开源兑现度）。另外，Jasper、Humane、Windsurf、Copy.ai 等落选者已在第五章作为失败对照完整分析——「落选」与「失败」是两类不同结论。</div>
+    <h3 class="mini" style="margin-top:24px">B. 口径与局限声明</h3>
+    <ul class="dash">
+      <li>本报告全部公司均为私营公司（除个别被收购方），ARR、估值、用户数等指标来自媒体披露、投资人口径或第三方估计（Sacra、arr.club、valueaddvc、North Metric 等），不同来源存在口径与时点差异，报告中已尽量标注时点（如「2026.2」）。</li>
+      <li>前沿模型层收入为 run-rate（年化运行率）而非 GAAP 年收入；Harvey（$190M 与 $300M 两个口径）、Mercor（$450M–$1B 区间）等分歧数据均以区间或双口径呈现。</li>
+      <li>护城河六维评分与综合评分为本报告分析框架下的主观量化，用于横向比较，不构成投资建议。</li>
+      <li>「达到 $1 亿 ARR 用时」图表中标注为「推算」的条目，依据公开披露的相邻节点内插，可能与实际存在数月偏差。</li>
+    </ul>
+    <h3 class="mini" style="margin-top:20px">C. 主要参考来源（2024.1–2026.9 公开报道与榜单）</h3>
+    <table class="tbl">
+      <tr><th>类别</th><th>来源</th></tr>
+      <tr><td>榜单</td><td>Forbes AI 50（2025、2026 第八届，2026.4.16 发布）；CB Insights AI 100（2025、2026 第十届，2026.5 发布）；a16z Top 100 GenAI Apps（2024、2025）；TIME Best Inventions（2024、2025）</td></tr>
+      <tr><td>财经媒体</td><td>TechCrunch（Databricks $188B 轮，2026.7.17；Cursor 融资与收购谈判报道）；Financial Times（Perplexity ARR 超 $450M，2026.4）；Forbes（AI 50 数据与公司档案）；CNBC（Ramp Series F）</td></tr>
+      <tr><td>机构研究</td><td>Bessemer Venture Partners《State of AI》（2025/2026，垂直 AI 与五大护城河框架）；a16z（Sierra / Glean / Decagon 投资档案）；Sequoia（ElevenLabs Series D）</td></tr>
+      <tr><td>第三方追踪</td><td>Sacra（ARR 估计）；valueaddvc.com（估值与 ARR 追踪仪表盘，2026.9）；arr.club（Decagon $100M ARR，2026.8）；usagepricing.com（定价事实库）；North Metric（收入估计）；Gartner / CB Insights（wrapper 失败率预测）</td></tr>
+      <tr><td>公司披露</td><td>各公司融资公告、产品发布公告（Databricks DAIS 2025/2026、Sierra Series E、ElevenLabs Series D、Abridge Series E、Legora / EvenUp / Clay 定价变更等）</td></tr>
+    </table>
+    <p class="body" style="margin-top:14px;font-size:12.5px;color:var(--sub)">报告生成时间：2026 年 9 月 30 日 · 本文件为自包含离线 HTML，可直接下载保存、打印（Ctrl/Cmd + P）或转发。</p>
+  </div>
+</section>
+</main>
+
+<footer>
+  <b>MOAT·2026 —— 全球高护城河 AI 产品全生命周期深度分析报告</b><br>
+  筛选范围：Forbes AI 50 / CB Insights AI 100 / a16z Top 100 等（2024–2026） · 入选 20 款 · 失败对照 4 例 · 图表 8 组<br>
+  数据均为公开报道与第三方估计口径，仅供研究参考，不构成投资建议。
+</footer>
+
+<button id="top-btn" title="回到顶部">↑</button>
+<div id="tooltip"></div>
+<script>
+/* ================= 数据与分类定义 ================= */
+const CATS = {
+  model:    {name:"前沿模型",       color:"#4f46e5"},
+  infra:    {name:"数据与基础设施", color:"#0284c7"},
+  dev:      {name:"开发者工具",     color:"#7c3aed"},
+  legal:    {name:"法律科技",       color:"#b45309"},
+  health:   {name:"医疗健康",       color:"#047857"},
+  cx:       {name:"客户体验",       color:"#db2777"},
+  knowledge:{name:"知识与搜索",     color:"#0891b2"},
+  creative: {name:"创意内容",       color:"#e11d48"},
+  finsvc:   {name:"金融与商务",     color:"#4d7c0f"}
+};
+const MOAT_DIMS = ["数据飞轮","工作流与转换成本","分发与品牌","结果定价权","网络效应","规模与成本"];
+const MOAT_W = [0.25,0.20,0.15,0.15,0.15,0.10];
+
+const PRODUCTS = [
+/* ---------- 1 OpenAI ---------- */
+{
+id:"openai",name:"OpenAI（ChatGPT）",ava:"OA",cat:"model",founded:2015,
+tagline:"把前沿模型变成消费品牌与企业操作系统——「模型即产品」的原始定义者",
+arr:25000,arrNote:"年化收入超 $250 亿（2026.2 报道口径）",val:852,valNote:"约 $852B（2026.9 估值榜单口径，市场另有口径）",
+moat:[5,4,5,4,5,5],
+stats:["ARR <b>＞$25B</b>（2026.2）","估值约 <b>$852B</b>","2015 年成立","Forbes AI 50 融资占五十强 80%"],
+origin:"灵感起点是 2015 年一项非同寻常的社会实验：以非营利实验室的形式押注「下一词预测可以涌现通用智能」。真正的产品灵感出现在 2022 年 11 月——团队发现研究演示 ChatGPT 本身就是最好的消费产品：对话框是人与模型之间零学习成本的界面。这个「把研究原型直接产品化给千万用户」的决定，重写了技术公司从实验室到市场的路径。",
+philosophy:"设计理念可以概括为三条：其一，模型即产品——不包装复杂功能，让能力本身成为卖点；其二，免费先行、订阅分层（Plus/Pro/Team/Enterprise），用免费层占据用户心智再向上转化；其三，研究—产品—数据飞轮：数亿用户的对话与纠错数据回流模型训练，形成「用户越多→模型越强→用户更多」的自我增强循环。这种循环是传统软件公司无法复制的资产。",
+competition:"面对 Anthropic 的企业安全叙事，以 GPT-5 系列的通用能力与企业版合规能力应对；面对 Google Gemini 的分发优势，用更快的产品节奏（周更）和品牌中立性周旋；面对开源模型的成本优势，选择用 Agent 模式、记忆与多模态等系统级体验拉开差距。最锋利的武器是「吸收」：一年内通过原生功能发布吸收了 200+ 获投 wrapper 产品的核心功能，直接清场应用层。",
+insight:"两个前瞻判断改变了行业走向：第一，「聊天只是入口，代理才是终局」——Operator、Computer Use 与 Agent 模式抢在生态成熟前定义交互范式；第二，ChatGPT 不做聊天工具而做「AI 时代的超级 App」，搜索、办公、编程、教育全部收进一个入口。两个判断都把 OpenAI 从模型供应商推向平台公司。",
+moatText:"五层叠加：前沿模型的规模壁垒（算力 + 数据 + 人才的三重资本门槛，十亿美元以下已无法入场）；八亿级周活用户的品牌与习惯；企业 API 的工程切换成本；微软分发联盟与全球数据中心；模型迭代反而增强以上全部——每一次能力跃迁都拉大与追赶者差距。风险项：巨额资本消耗、开源追赶、内容诉讼与治理结构争议。",
+monetization:"变现能力为全行业天花板：年化收入超 $250 亿（2026.2 报道口径），来源为消费订阅（$20/$200 档）、API 用量计费、企业协议与席位制并行。付费订阅用户数百万级，企业客户覆盖多数财富 500 强。缺陷在于成本结构：训练与推理的资本开支使公司仍处重资产扩张期，盈利模型依赖推理成本曲线持续下降。",
+assessment:"生命周期判定：成功，且是双重成功——史上最快达到消费级与企业级同时规模化的公司。从 2022.11 到 2026.2，三年多走完了传统软件巨头二十年的收入曲线。但需冷静记录：其壁垒一半建立在资本结构（史无前例的融资额）而非纯产品之上，OpenAI + Anthropic 占据 Forbes AI 50 总融资 80% 的事实，说明这道护城河本身也是资本堆出来的。",
+outlook:"3 年：Agent 商业化成败决定天花板，若企业代理被广泛采购，收入再上一个量级；5 年：与开源/Google 的相对壁垒取决于推理成本曲线与监管环境，双寡头格局大概率延续；10 年：若 AGI 路径兑现则成为基础设施级平台，若能力增长停滞则面临模型商品化与利润率压缩——两种结局的天壤之别正是其估值争议的核心。",
+verdict:"护城河最深的 AI 公司，但其壁垒由资本与能力共同浇筑——观察代理商业化兑现度是未来三年的关键指标。"
+},
+/* ---------- 2 Anthropic ---------- */
+{
+id:"anthropic",name:"Anthropic（Claude）",ava:"AN",cat:"model",founded:2021,
+tagline:"用「安全对齐」重做前沿模型，以 Claude Code 完成从实验室到开发者入口的关键一跃",
+arr:30000,arrNote:"年化运行率约 $300 亿（2026.4 报道口径）",val:965,valNote:"约 $965B（2026.9 估值榜单口径）",
+moat:[5,4,5,4,4,5],
+stats:["Run-rate <b>≈$30B</b>（2026.4）","估值约 <b>$965B</b>","2021 年成立","Claude Code 约 6 个月达 $1B 年化"],
+origin:"灵感源于一次理念分裂：2021 年，OpenAI 前研究副总裁 Dario Amodei 带队出走，认为前沿模型的安全对齐必须成为工程约束而非事后补丁。创业洞察是「安全不是合规成本，而是企业信任的商品化」——当模型进入银行、医院、律所，可靠性与可控性本身就能卖出溢价。",
+philosophy:"产品设计围绕「值得托付的智能」：宪法式 AI（Constitutional AI）把价值观约束写进训练流程；长上下文与代码能力优先，因为这两项最能兑现为生产率；界面上克制——不做大众化炫技功能，把工程资源集中在模型质量与 API 可靠性。Claude Code 的「终端优先」设计是对开发者真实工作流的尊重：不换编辑器、不学新界面，把代理能力注入已有习惯。",
+competition:"面对 ChatGPT 的消费端统治力，主动选择错位竞争：不抢大众流量，深耕企业 API 与开发者心智。与 AWS、Google Cloud 的深度分发绑定，让 Claude 成为云厂商企业客户的默认选项之一——用渠道换市场，避免正面消耗战。2025 年 Claude Code 从研究预览到约 $10 亿年化仅用约 6 个月（2025 年报道口径），直接切入 Cursor 腹地，证明前沿实验室可以向下挤压应用层。",
+insight:"关键的前瞻判断有二：一是「企业采用 AI 的瓶颈是信任而非能力」，提前把安全、可审计、可控输出做成产品级承诺，恰在 2025–2026 年企业采购潮中兑现为订单；二是模型公司必须拥有自己的杀手级应用——Claude Code 让 Anthropic 同时赚模型的钱和应用的钱，避免沦为纯 API 供应商。",
+moatText:"壁垒构成：前沿模型第一梯队的能力（与 OpenAI 双寡头）；企业信任与安全合规叙事——这是目前唯一与规模同等重要的模型层壁垒；云厂商分发联盟（AWS / GCP）；Claude Code 建立的开发者习惯。自我增强机制：企业级长对话数据 + 编程反馈数据持续回流。风险：依赖云渠道分成、消费端存在感弱于 OpenAI、前沿竞争的资本消耗。",
+monetization:"年化运行率约 $300 亿（2026.4 报道口径），增速为同规模公司中最快之列；收入结构以 API 用量与企业协议为主、Claude 订阅为辅。值得记录的是变现质量：API 收入的净留存与用量弹性，使其收入增长与客户业务增长深度绑定，续约逻辑强于一次性订阅。",
+assessment:"生命周期判定：成功——三年半从理念分裂走到与 OpenAI 并列的双寡头，且在 2026 年出现收入反超的报道口径。其路径证明：在技术同质化预期下，「理念差异 → 信任差异 → 客户结构差异」可以转化为商业差距。尚未验证的是独立消费品牌与盈利时间表。",
+outlook:"3 年：企业代理与编程场景双引擎，与 OpenAI 的差距在信任敏感行业反而扩大；5 年：安全合规成为监管红利——欧盟 AI 法案等框架下，最稳健的前沿模型将获得采购倾斜；10 年：前沿模型竞赛的资本门槛只会更高，双寡头或演化为「双寡头 + 一个国家级玩家」格局，Anthropic 的位置取决于企业信任的复利。",
+verdict:"以安全叙事打赢信任战的挑战者教科书；企业渗透与开发者习惯是其可自我增强的核心资产。"
+},
+/* ---------- 3 Databricks ---------- */
+{
+id:"databricks",name:"Databricks",ava:"DB",cat:"infra",founded:2013,
+tagline:"从大数据卖铲人到 AI 时代的企业数据底座——「无论哪家模型赢，都要先用我的数据」",
+arr:null,arrNote:"未披露（多条产品线订阅 + 用量计费）",val:188,valNote:"$188B（2026.7 Coatue 领投轮）",
+moat:[5,5,5,4,4,5],
+stats:["估值 <b>$188B</b>（2026.7）","Series L $134B 为史上最大私有软件轮（2025.12）","1.2 万+ Databricks SQL 客户","Gartner DSML 魔力象限领导者"],
+origin:"灵感来自 2013 年的伯克利：Spark 核心团队把学术论文直接变成公司，赌的是「数据量增长永远快于数据处理能力」。第二个灵感时刻发生在 2022–2023 年：企业开始涌入生成式 AI，Databricks 发现真正的瓶颈不是模型，而是企业自己的数据不可治理、不可追溯、不可授权——它十二年沉淀的 Lakehouse 恰好是那块缺失的地基。",
+philosophy:"核心理念是「数据在哪里，AI 就在哪里」：与其让数据流向模型，不如让 AI 能力长在数据之上。统一开放格式（Delta / Iceberg 互操作）让客户不害怕被锁定；Unity Catalog 提供治理与权限——这是企业采购 AI 的第一道门槛；Mosaic AI（收购而来）补齐训练与微调；Lakebase、Omnigent 把平台延伸为代理的运行时。整套设计把「AI 落地难」转化为平台收入。",
+competition:"对 Snowflake：用开放格式终结架构战争——2025–2026 年 Iceberg 互操作全面落地，竞争从「格式之争」降维为「工作负载效率之争」，行业共识收敛为双平台格局。对云厂商（Microsoft Fabric）：以中立性与开放性周旋，避免成为某朵云的附属。对 AI 原生挑战者：用收购（MosaicML、Arcion、Neon）快速补齐版图，不给新玩家窗口。",
+insight:"2023 年即判断「企业 AI 的第一瓶颈是数据治理而非模型智能」，并在 DAIS 2025 宣布从 Lakehouse 走向「智能平台」（Lakebase / Omnigent / Agent Bricks）；另一个反直觉决策是大力拥抱开放权重模型（如 GLM 系列），公开对比证明开源模型在编码等任务上成本更低——因为它赚的是平台钱而非模型钱，模型越便宜，数据平台消费越多。",
+moatText:"十二年企业数据基础设施的引力：数据与工作负载迁移成本随时间复利增长；1.2 万+ SQL 客户与 Gartner DSML 象限「执行力最强、愿景最完整」双第一；治理资产（Unity Catalog）成为企业 AI 采购的事实前置条件。模型迭代对它不仅无害，反而持续放大需求——每个新模型都创造新的数据准备、治理与部署需求。",
+monetization:"多产品线叠加：数据工程、SQL 仓、机器学习、治理、代理运行时全部计入同一消费账户，单客户可获取收入随 AI 用例扩张自然增长。融资史侧面证明变现能力：2025.12 Series L 以 $134B 估值成为史上最大私有软件轮，2026.7 再升至 $188B——一级市场愿意连续为「确定性」付费。",
+assessment:"生命周期判定：成功，且是「第二曲线」型成功——一家大数据时代的中年公司完成了 AI 原生转身，估值在两年内翻数倍。它与 OpenAI 代表了两种截然不同的护城河：一个靠模型能力与资本，一个靠数据引力与企业惯性。风险在于双寡头（Snowflake）竞争下的利润率与开放格式的长期 commoditization 效应。",
+outlook:"3 年：企业代理的数据运行时标准之争占先手，Agent Bricks / Lakebase 若成为代理部署默认底座，打开第三曲线；5 年：与 Snowflake 分治开放数据层，企业「数据 + AI 平台」预算高度集中；10 年：如果数据治理与代理运行时合并为企业 AI 的操作系统层，Databricks 将成为继数据库之后又一个二十年维度的基础设施常青树。",
+verdict:"AI 时代最确定的收税层之一：模型迭代越快，企业数据治理与部署需求越刚性——教科书级的「卖水人」第二曲线。"
+},
+/* ---------- 4 Mercor ---------- */
+{
+id:"mercor",name:"Mercor",ava:"ME",cat:"infra",founded:2023,
+tagline:"从 AI 招聘工具到前沿实验室的「专家数据供应商」——一次教科书级转型",
+arr:700,arrNote:"Run-rate $4.5–10 亿（报道区间）",val:10,valNote:"$10B（2025.10）",
+moat:[4,4,4,3,4,4],
+stats:["Run-rate <b>$450M–$1B</b>（报道区间）","估值 <b>$10B</b>（2025.10）","2023 年成立","估值 18 个月从 $250M 到 $10B"],
+origin:"2023 年创立时的灵感是「用 AI 面试官重构招聘」——AI 自动面试、自动评估、自动匹配。真正的顿悟来自客户数据：前沿 AI 实验室开始大量采购「会做高质量人类反馈的专家」，医生、律师、博士级标注者供不应求。团队意识到，自己搭好的 AI 面试管线，恰好是筛选这些高价专家的最优工具——招聘工具随即转型为数据基础设施。",
+philosophy:"核心理念是「AI 训练数据本质上是人才市场问题」：把简历筛选、结构化面试、能力定价、质量控制全部 AI 自动化，平台只做撮合与抽成。与 Scale AI 的劳动密集模式不同，Mercor 追求「无人工干预的供给侧扩张」——理论上专家供给可以零边际成本增长。",
+competition:"对 Scale AI：2025 年 Meta 注资并挖走创始人后，Scale 的中立性受损，Mercor 以「实验室中立供应商」定位直接承接份额；对 Surge AI：以自动化程度与专业领域纵深（医疗、法律、金融专家）取胜。客户极度集中（少数前沿实验室），但每家都是十亿美元级预算买家。",
+insight:"最锋利的判断是 RLHF → RLDR 的迁移：随着模型逼近通用人类水平，普通标注数据价值衰减，而「领域专家级反馈」（医生看影像、律师读判例）成为新瓶颈，时薪数百至上千美元仍供不应求。Mercor 把自己插进这条最贵的供给链，本质是在卖「人类最后的稀缺智能」。",
+moatText:"壁垒构成：20 万级专家供给网络（双边市场起步效应）；与前沿实验室的深度客户关系；自动化面试与质量控制管线沉淀的评估数据。自我增强机制：面试越多→评估模型越准→撮合质量越高。风险项：客户高度集中（依赖少数实验室预算）、合成数据的中长期替代威胁、数据需求随训练范式的波动。",
+monetization:"变现凶猛：run-rate 报道区间 $4.5–10 亿，估值从 2024 年 $2.5 亿涨到 2025.10 的 $100 亿，18 个月 40 倍。商业模式为撮合抽成，随实验室训练预算线性放大——收入与整个前沿模型行业的资本开支直接挂钩，是「卖铲人中的卖铲人」。",
+assessment:"生命周期判定：转型成功——从同质化红海（AI 招聘）跳到稀缺蓝海（专家数据），是 2024–2026 年最干净的 pivot 案例之一。但必须记录其脆弱性：需求由极少数客户的训练范式决定，一旦前沿实验室削减 RLHF 预算或合成数据突破，收入弹性会反向放大。",
+outlook:"3 年：专家数据为王——推理模型与领域模型训练把需求推向新高；5 年：合成数据侵蚀通用标注需求，专家反馈与评测（evals）成为剩余高地；10 年：取决于「人类反馈」在超人类系统对齐中的地位——若不可替代，Mercor 将成为人机对齐的基础设施；若可替代，需提前转型为评测与审计平台。",
+verdict:"靠 pivot 抢到的稀缺位置：把「人类专家智能」商品化并卖给机器，护城河真实但对少数客户预算高度敏感。"
+},
+/* ---------- 5 Cursor ---------- */
+{
+id:"cursor",name:"Cursor（Anysphere）",ava:"CU",cat:"dev",founded:2022,
+tagline:"AI 原生 IDE：从「补全插件」重做编辑器，0→$20 亿 ARR 约三年的最快软件曲线",
+arr:2000,arrNote:"$20 亿+（2026.2 报道口径）",val:29.3,valNote:"$29.3B Series D（2025.11），2026 年另有约 $60B 收购/融资谈判报道",
+moat:[4,5,5,4,3,4],
+stats:["ARR <b>$2B+</b>（2026.2）","估值 <b>$29.3B</b>（2025.11）","付费用户 <b>100 万+</b>、企业团队 5 万+","0→$1B ARR 约 20 个月"],
+origin:"2022 年，四位 MIT 毕业生的灵感是「模型已经足够强，瓶颈在交互界面」：当时的 AI 编程产品全是 IDE 插件——补全一行、聊一个窗口，人机交互被旧编辑器的框架锁死。他们选择 fork VS Code、从内核重做编辑器，让 AI 成为编辑器的一等公民而非外挂。这个「重做容器而不是改装内容」的判断，是整个 AI 编程赛道的分水岭。",
+philosophy:"设计理念层层递进：Tab 补全做到极低延迟（自研小模型压推理时间）；Composer 多文件编辑把「改代码」从单点操作升级为任务级重构；Agent 模式最早成熟——让 AI 自己跑终端、查文件、跑测试。模型层可插拔（Claude / GPT / Gemini 随意切换），产品价值押在索引、上下文管理与交互编排上，而非任何单一模型。",
+competition:"对 GitHub Copilot（分发之王，微软系）：不打渠道战，打产品力战——让开发者个体先用起来，再「倒逼采购」，2025 年企业收入增长 100 倍；对 Windsurf 价格战：2025.7 竞品被 Cognition 收购、品牌动荡，Cursor 借机扩大差距；对 Claude Code（2025 年杀出的终端路线）：以隐私模式、SOC 2、SSO/SCIM 等企业合规能力守住采购关卡，同时自研模型降低对单一 API 的依赖。",
+insight:"两个前瞻判断定义了产品：其一，「编辑器是开发者与 AI 之间的握手协议」——代理循环（agent loop）而非单点补全才是终局形态，Composer / Agent 抢在所有人之前把多文件智能编辑做成日常；其二，隐私模式（代码不用于训练）提前解决企业采购的最大顾虑，把个人口碑转化为企业合同。",
+moatText:"壁垒构成：开发者习惯与社区口碑（工程师会为它对抗采购部门，这是极少见的品牌势能）；代码库索引与上下文工程的技术积累；企业部署与合规认证；5 万企业团队的组织嵌入。脆弱点同样清晰：核心智能仍依赖外部前沿模型，模型厂商（如 Anthropic 的 Claude Code）正在向下挤压——这是其估值争议的核心变量。",
+monetization:"变现效率惊人：$20–200/月分层订阅，100 万+ 付费用户，5 万+ 企业团队，0→$20 亿 ARR 约三年，是可查证史上最快软件公司之一；估值 $29.3B（2025.11 Series D），2026 年传出约 $60B 量级收购/融资谈判（TechCrunch 等报道）。按 2026 年底 $60–100 亿 ARR 目标口径，估值倍数将从 30x 压缩到 10x 附近。",
+assessment:"生命周期判定：成功——AI 应用层增长曲线的全球标杆。但它的历史使命尚未完成：第一场战争（产品力对 Copilot）已赢，第二场战争（对模型厂商的原生化竞争）刚刚开始。若 Agent 形态继续向「编辑器之外」迁移，其入口地位会被稀释；若编辑器仍是代理的握手协议，它就是新时期的 JetBrains。",
+outlook:"3 年：编程代理入口之争白热化，企业级（合规、审计、团队协作）是主要战场，ARR 冲击 $50–100 亿；5 年：关键命题是「编程本身是否被代理重构」——若人人用自然语言指挥代理，IDE 的形态与价值将重新定义；10 年：开发者数量十倍级膨胀的「全民编程」时代，谁握住代理编排层谁就是入口，Cursor 的胜率取决于从工具到平台的二次跨越。",
+verdict:"增长史上的奇迹 + 护城河上的悬案：习惯与工作流壁垒真实存在，但头顶悬着模型厂商原生化这把剑。"
+},
+/* ---------- 6 Cognition ---------- */
+{
+id:"cognition",name:"Cognition（Devin）",ava:"CO",cat:"dev",founded:2023,
+tagline:"全自动 AI 软件工程师：押注「替代」而非「辅助」的高风险高回报路线",
+arr:100,arrNote:"$1 亿+（报道口径）",val:10.2,valNote:"$10.2B（2025.9），2026 年 $25B 融资谈判报道",
+moat:[4,4,3,3,3,4],
+stats:["ARR <b>$100M+</b>","估值 <b>$10.2B</b>（2025.9）","2024.3 首发「AI 软件工程师」","2025.7 收购 Windsurf"],
+origin:"2023 年，一支国际信息学奥赛金牌团队注意到一个被忽视的事实：软件工程的大部分痛苦不在写代码，而在跨小时、跨文件的任务循环——读需求、定位、改动、跑测试、修复。灵感由此而来：把整个循环交给一个长时程自主代理，而不是把 AI 当打字加速器。2024 年 3 月 Devin 发布，「全自主 AI 软件工程师」的叙事一炮打响。",
+philosophy:"产品哲学是「给任务，不给提示」：Devin 被设计为接收一个 GitHub issue 后独立完成从理解到提 PR 的全过程，自带终端、浏览器与编辑器。配套的竞争策略是「榜单即营销」——持续刷高 SWE-bench 等基准分数，把抽象的自主能力翻译成可传播的数字。自研 SWE 系列模型保证关键能力不依赖第三方。",
+competition:"对 Cursor / Copilot（辅助路线主流）：坚持差异化走「替代」路线，承担更长的可靠性与信任爬坡；2025.7 收购 Windsurf 一举两得——消灭最激进的价格战对手，同时获得 IDE 界面与数十万用户补齐产品矩阵；2026.6 将 Windsurf 更名 Devin Desktop，统一品牌。副作用是社区信任受损：品牌一年内三易其名且无 opt-out。",
+insight:"核心洞见是「验证才是代理的瓶颈」：生成代码容易，确认代码正确（测试、CI、回滚）才贵。Cognition 重仓企业代码库理解与验证基础设施，押注当模型能力足够强时，最先变现的是「敢放手」的那一层——这与辅助派形成了对整个赛道的对冲布局。",
+moatText:"壁垒构成：自研 SWE 模型 + 沙箱化执行环境的技术纵深；Windsurf 并入后的用户基数与 IDE 界面；$10B 级弹药。脆弱点：全自主路线的可靠性尚未跨过企业信任阈值，品牌整合的震荡削弱了开发者社区好感，且两条战线（IDE 与自主代理）同时面对巨头。",
+monetization:"ARR 超过 $1 亿（报道口径），订阅 + 企业合同并行；2025.9 以 $10.2B 估值融资 $4 亿，2026 年出现 $25B 估值融资谈判报道——资本对其「AI 工程师」叙事给出的定价远高于当前收入能支撑的水平，隐含了对全自主编程兑现的强预期。",
+assessment:"生命周期判定：阶段性成功但持续摇摆——技术前瞻性（最早定义全自主编程品类）尚未完全转化为品类统治力；收购 Windsurf 展现了资本运作的果决，但品牌管理的反复是明显的执行扣分项。它仍是这场编程范式之争中不可忽视的第三极。",
+outlook:"3 年：与 Cursor、Copilot 三分市场，Devin Desktop 与 Devin 代理的捆绑是关键动作；5 年：若长时程自主工程跨过可靠性阈值，Devin 类产品将吃掉软件外包与初级工程师任务市场的大块份额；10 年：软件工程的重心从「写代码」迁移到「定义问题与验证结果」，提前卡位验证层的 Cognition 有望成为代理工程的基础设施。",
+verdict:"高风险高回报的「替代派」旗手：押对了问题（长时程自主），但品牌摇摆与巨头夹击让兑现窗口变窄。"
+},
+/* ---------- 7 Harvey ---------- */
+{
+id:"harvey",name:"Harvey",ava:"HA",cat:"legal",founded:2022,
+tagline:"BigLaw 的工作流操作系统——把「错误成本最高的行业」变成 AI 定价权最强的行业",
+arr:190,arrNote:"$1.9 亿（2026.3 报道），2026 年中另有约 $3 亿口径",val:11,valNote:"$11B（2026.3）",
+moat:[5,5,5,5,3,4],
+stats:["ARR <b>$190M→$300M</b>（2026 双口径）","估值 <b>$11B</b>（2026.3）","律师用户 <b>10 万+</b>","AmLaw 100 多数在用 · 约 24 个月达 $1 亿 ARR"],
+origin:"2022 年，OpenAI 出身的创始团队与 O'Melveny & Myers 律师合作时发现一个结构性痛点：顶级律所 80% 的工时消耗在尽调、起草、检索等文档密集环节，而法律服务以小时计费——AI 提效直接冲击律所自己的收入模型。灵感由此成形：不卖效率，卖「律所在 AI 时代继续收高额账单的能力」。",
+philosophy:"设计理念是三层递进：只做 BigLaw 工作流（尽调、起草、检索、知识管理），不做通用问答；把律所私有语料（判例、备忘录、合同库）与模型绑定，形成越用越准的专属智能；以保密特权架构（客户—律师特权保护、私有部署、不训练通用模型）回应法律行业的第一顾虑。错误成本极高的行业里，信任本身就是溢价。",
+competition:"对 Thomson Reuters / LexisNexis 等法律科技老牌：以 AI 原生与工作流速度碾压其转型节奏；对直接使用 GPT 的 DIY 倾向：用企业级保密、审计与责任边界把「裸用模型」挡在采购清单外；对 Legora（18 个月 $1 亿 ARR 的强劲追兵）：以规模回应——10 万+ 律师、AmLaw 100 多数在用、ARR 冲向 $3 亿（2026 年中口径），并从律所向企业法务与政府部门扩展第二增长曲线。",
+insight:"最前瞻的判断是「法律是错误成本最高、因此最愿意为可靠性付费的垂直行业」——先占住信任高地，定价权自然而来；第二个判断是品类演化方向：从「AI 助手」（检索、摘要）走向「AI 同事」（起草初稿、填写表格、提交文件），把可自动化的法律劳动一节一节收入囊中。",
+moatText:"壁垒构成：AmLaw 100 的多数派部署——顶级律所互为参照的采购行为形成锁定；律所私有语料与逐案纠错的数据飞轮（每次律师修正都让平台更懂这家律所）；保密与合规架构的先发工程投入；OpenAI 的深度合作与背书。转换成本极高：换平台等于放弃数年积累的私有智能。",
+monetization:"变现强度为垂直 AI 标杆：约 24 个月达 $1 亿 ARR，2026.3 估值 $110 亿，ARR 口径 $1.9–3 亿；合同形态为席位 + 用量混合，客单价数万至数十万美元级。法律行业的风险溢价直接体现在定价权上——客户为「不出错」支付的价格远高于为「省时间」支付的价格。",
+assessment:"生命周期判定：成功，垂直 AI 的教科书案例——选对行业（高错误成本）、选对客户（预算最肥的 BigLaw）、用信任而非功能建立壁垒。风险记录：法律 AI 市场 2026 上半年 16 笔交易约 $10 亿融资涌入，Legora 等对手的融资与增长速度说明攻守战才刚开始；1,490 起涉及 AI 幻觉引用的法庭案件提醒全行业，一次重大事故可能改变监管态度。",
+outlook:"3 年：法律 AI 市占率第一的位置大概率巩固，扩展至企业法务与政府；5 年：从工具变成律所计费基础设施——AI 产出直接进入客户账单，「AI 合伙人」参与利润分配的模式成型；10 年：律所金字塔结构被重塑（AI 承担初级工作，人类集中于判断与关系），Harvey 若保持领先，将成为法律服务层的基础设施。",
+verdict:"垂直 AI 定价权的极致案例：用信任与私有数据飞轮把「高错误成本行业」变成最肥的 AI 市场。"
+},
+/* ---------- 8 Legora ---------- */
+{
+id:"legora",name:"Legora",ava:"LE",cat:"legal",founded:2023,
+tagline:"与律所「共同设计」的协作原生法律平台——Bessemer 称其 18 个月 $1 亿 ARR 为企业软件史上最快",
+arr:100,arrNote:"$1 亿（18 个月达成）",val:5.55,valNote:"$5.55B（估值五个月内三倍）",
+moat:[4,4,4,4,3,3],
+stats:["ARR <b>$100M</b>（18 个月）","估值 <b>$5.55B</b>","2023 年成立","估值 5 个月三倍"],
+origin:"灵感来自北欧的「共创」传统：2023 年起步时，团队不先做产品，而是与 Wiersholm 等顶级律所深度共建——律师参与功能定义，产品按真实协作流生长。起点判断是：法律工作的本质不是单人问答，而是多人接力与版本管理，这一视角与当时已走红的 Harvey 形成路线差异。",
+philosophy:"核心理念是「协作原生」：多律师 + AI 在同一文档上实时协作、追踪修改、沉淀机构记忆——把法律 AI 从「个人工具」升维成「律所操作系统」；云原生架构天然支持跨办公室、跨时区；界面克制优雅，针对年轻律师做口碑增长（产品自传播而非销售驱动）。",
+competition:"对 Harvey（规模领先者）：以两点错位竞争——协作与欧洲数据主权（GDPR 语境下的本地部署与数据边界），主攻欧美双市场；对传统法律科技（Westlaw 系）：以 AI 原生速度代差碾压。战果：18 个月 $1 亿 ARR，被 Bessemer 称为企业软件史上最快轨迹；估值五个月三倍至 $55.5 亿。",
+insight:"关键洞见是「律师事务所的采购决策是集体行为」——协作平台天然把价值摊到整个律所，单人工具的 ROI 叙事撑不起大合同；其次是年轻律师的品味红利：他们向上成为合伙人时会把习惯带进决策层，这是十年尺度的种子投资。",
+moatText:"壁垒构成：欧美双市场律所网络（尤其欧洲数据主权的差异化定位）；协作过程沉淀的机构知识库（越协作越离不开）；增长速度带来的资本弹药。脆弱点：Harvey 的规模与 AmLaw 100 占有率压制，以及协作功能本身可被对手复制——护城河主要靠速度与定位，而非不可复制的技术资产。",
+monetization:"$1 亿 ARR（18 个月），律所级合同、席位 + 用量计价；估值 $55.5 亿的快速上调说明一级市场把它的增速曲线与 Harvey 直接对标定价。变现效率（收入 / 融资额）在垂直 AI 中属第一梯队。",
+assessment:"生命周期判定：早期成功，且是罕见的「对巨头发起正面进攻仍保持超高速」的案例。它的战略窗口在于欧洲主权叙事与协作差异化能支撑多久——若三年内不能把 ARR 推向 $5 亿量级，面对 Harvey 的规模优势将转入防御。",
+outlook:"3 年：巩固欧洲第一、美国前二的位置，ARR 冲击 $3–5 亿；5 年：两种结局——全球前二独立上市，或成为巨头（汤森路透、律所联盟、平台公司）的并购标的；10 年：若「协作即法律基础设施」成立，Legora 将定义律所操作系统品类；若不成立，其资产（律所网络与知识库）仍是高价收购标的。",
+verdict:"速度怪物 + 定位巧匠：以协作与数据主权对冲 Harvey 的规模压制，护城河中等但成长动能一流。"
+},
+/* ---------- 9 EvenUp ---------- */
+{
+id:"evenup",name:"EvenUp",ava:"EV",cat:"legal",founded:2019,
+tagline:"人身伤害法律的「按案计价」自动化工厂——卖产出，不卖工具",
+arr:150,arrNote:"未正式披露（按案计价，约每周 1 万案，估计 $1.5 亿+）",val:2,valNote:"$2B+（2025.10 Series E，一年内翻倍）",
+moat:[5,5,3,5,2,3],
+stats:["估值 <b>$2B+</b>（2025.10）","约 <b>1 万案/周</b> 处理量","自研模型 Piai · 最大 PI 判例库","2025.12 革命性改为按案计价"],
+origin:"2019 年，创始团队观察到人身伤害（PI）律师的日常：起草需求函（demand letter）需要整理病历、计算损失、引用判例——每案数天、高度模板化且利润被人力吃掉。灵感是：这是法律服务中最像「流水线」的环节，AI 可以直接交付成品文书，而不是卖给律师一个还要学的工具。",
+philosophy:"核心理念是「卖产出不卖软件」：律师交案子，EvenUp 交可用的需求函与案件估值。为此自研 Piai 模型，用多年积累的 PI 判例与结案数据训练；定价与产品形态完全对齐——2025.12 废除功能分层，改为「一案一价」的 case-based pricing，官方理由是消灭「令人困惑的功能分层与不可预测的加购」。",
+competition:"真正的对手不是 AI 公司，而是外包文书公司与律所内部初级律师——EvenUp 用质量一致性 + 交付速度直接替代；面对后来者的价格攻击（竞品建对比页称其「$300 基础价会膨胀到 $800+」），以一刀价 + 规模化成本优势回应；面对 Clio 等律所 SaaS 平台向 AI 延伸，以专有数据纵深守住 PI 这一垂直纵深。",
+insight:"前瞻判断有二：其一，法律服务中最先商品化的是「标准文书」，先占住这个楔子再向案件全流程扩展（医疗记录分析、和解谈判支持）；其二，计价单位革命——按案计价把 AI 从成本项（律师的工具费）变成收入项（每案净赚），律所的采购心理完全改变。",
+moatText:"壁垒构成：业内最大的 PI 判例与结案数据集（Piai 模型的独占燃料）；每周约 1 万案的处理规模带来的成本曲线优势；律所工作流深度嵌入（从接案到结案的管线替换成本）。脆弱点：PI 市场天花板相对明确、网络效应弱（律所间不互联）、竞品可复制按案计价形式。",
+monetization:"变现模式为 AI 行业最早成熟的「按结果计价」范例之一：一案一价、随案件量线性增长；估值从 2024 年 $10 亿+ 到 2025.10 $20 亿+，一年翻倍完全由单一垂直（人身伤害法）支撑——单位经济模型的密度罕见。",
+assessment:"生命周期判定：成功——证明了「AI 直接卖劳动产出」的商业模式在法律行业完全成立。它的战略悬念在于纵深（PI 全流程）与横向（其他法律垂直、保险对抗）之间的扩张选择；按案计价的定价透明化是主动放弃短期毛利换取品类定义权的漂亮动作。",
+outlook:"3 年：统治 PI 自动化，向案件全流程（医疗记录、谈判、诉讼支持）延伸；5 年：最自然的扩张是保险理赔对抗市场——保险公司同样需要结构化的案件评估，双边收税；10 年：若按结果计价成为法律服务默认合同形态，EvenUp 将是「法律产出批发商」这一新品类的定义者。",
+verdict:"按结果计价的先行者：数据纵深 + 一案一价构成真实壁垒，天花板取决于从 PI 单点向保险与全流程的扩张。"
+},
+/* ---------- 10 Abridge ---------- */
+{
+id:"abridge",name:"Abridge",ava:"AB",cat:"health",founded:2018,
+tagline:"把医患对话变成结构化病历——医疗 AI 落地速度与规模的第一标杆",
+arr:100,arrNote:"$1 亿+（2025 年中；2025Q1 合同额 $1.17 亿）",val:5.3,valNote:"$5.3B（2025.6 Series E，2026.4 延长轮维持）",
+moat:[5,5,4,4,3,4],
+stats:["ARR <b>$100M+</b>（合同额 $117M，2025Q1）","估值 <b>$5.3B</b>","部署 <b>250+ 健康系统</b>","Kaiser Permanente 全部 40 家医院采用"],
+origin:"灵感来自创始人的双重身份：CMU 出身的心脏病医生 Rao 亲历临床文书倦怠——每天数小时在 EHR 里复写对话。2018 年创业时技术尚不成熟，2023 年语音 + LLM 跨越可用阈值，公司全力转向「环境式临床文书」（ambient scribe）：听医患对话，自动生成结构化、可计费的病历。",
+philosophy:"核心理念是「医患对话即结构化病历」：产品不是转写工具，而是嵌入 EHR 工作流的文书生成系统——与 Epic 深度集成，笔记直接写回病历系统、对齐计费编码（CPT/E&M）。临床正确性优先于生成速度：幻觉在医疗语境是安全事件，架构上以专科适配与医生确认环节控制风险。",
+competition:"对 Microsoft / Nuance DAX（巨头 incumbents）：以 KLAS 榜第一的真实口碑 + 250+ 系统部署（含 Kaiser 全部 40 家医院）正面胜出；对 Ambience、Suki 等同代对手：以 Epic 伙伴地位与 1.5 亿+（累计至 1 亿+，持续增长）真实医患对话数据压制；最大的潜在威胁是 Epic 自研原生 scribe——Abridge 的对策是向上游移动：2026.1 与 Availity 合作做「从对话直接生成预授权」，绑定支付方网络关系，做 EHR 不愿或难以复制的部分。",
+insight:"两个定义品类的判断：其一，「scribe 只是入口，临床智能层才是业务」——从记录扩展到编码、预授权、决策支持（集成 UpToDate / NEJM / JAMA 证据源），客单价与不可替代性同步上升；其二，采购战线前移——KLAS 排名与真实部署量是最好的销售武器，医疗采购是同行背书驱动的。",
+moatText:"壁垒构成：Epic 集成的先发地位（工作流嵌入，替换等于重做信息化项目）；1 亿+ 真实医患对话的专科数据飞轮；250+ 健康系统部署形成的最佳实践网络（CIO 圈层的口碑传播）；KLAS 第一的口碑资产；支付方（Availity）集成的第二层壁垒。模型迭代对其影响中性偏好——底层模型越强，其数据与集成资产价值越突出。",
+monetization:"ARR $1 亿+（2025 年中），2025Q1 合同额 $1.17 亿；计价从按医生席位演进——2026.7 出现 CHRISTUS Health「无限企业协议」案例，标志从席位制向企业级整体合同跃迁，客单价天花板打开。估值 $53 亿对应当前 ARR 倍数偏高，市场在为「中收入周期平台」的扩展定价。",
+assessment:"生命周期判定：成功——医疗 AI 中落地最快、规模最大、护城河最清晰的案例。关键动作（Epic 绑定、向上游收入周期扩张、企业级合同）全部正确。风险清单：Epic 原生化竞争、Nuance 的渠道反击、以及医疗支付政策（如 scribe 报销规则）的变化。",
+outlook:"3 年：ambient scribe 在美国大型健康系统普及，预授权自动化（$310 亿/年成本池）成为第二引擎；5 年：从文书平台长成「中收入周期平台」（RCM 市场 $2500 亿+），覆盖从对话到报销的全链路；10 年：临床智能基础设施——对话数据加上证据层，成为临床决策支持的原生入口，与 EHR 形成「记录在 Epic、智能在 Abridge」的分层格局。",
+verdict:"医疗 AI 的执行标杆：Epic 嵌入 + 真实对话数据飞轮 + 向上游移动，三步棋把它从工具变成了平台。"
+},
+/* ---------- 11 OpenEvidence ---------- */
+{
+id:"openevidence",name:"OpenEvidence",ava:"OE",cat:"health",founded:2021,
+tagline:"给医生的「证据引擎」——用出版商独家语料筑起模型爬不到的数据高地",
+arr:null,arrNote:"未披露（免费策略 + 药企与订阅探索期）",val:12,valNote:"$12B（资本效率为医疗 AI 之最：估值/融资额 16.3 倍）",
+moat:[5,3,5,2,4,3],
+stats:["估值 <b>$12B</b>","估值/融资额 <b>16.3×</b>（医疗 AI 最高）","医生群体病毒式免费采用","NEJM / JAMA / AMA 独家内容合作"],
+origin:"2021 年，哈佛医学背景团队的判断是：医生缺的不是答案，而是「可溯源的证据」——Google 给链接海洋，通用大模型给无法核验的自信回答，而临床决策需要的是「这条结论出自哪篇同行评议文献」。灵感由此成形：把循证医学（EBM）的检索传统与 LLM 的自然语言能力焊接在一起。",
+philosophy:"设计理念四条：只索引同行评议文献（NEJM、JAMA、专科期刊），答案必须挂引用；免费给全体医生使用——绕过医院漫长的采购周期，让产品先进处方流再谈商业化；界面贴近临床问诊节奏（鉴别诊断、用药、指南更新）；以「证据密度」而非「生成流畅度」作为质量北极星——克制地回答「文献支持什么」而非「模型认为什么」。",
+competition:"对 Google / ChatGPT 泛搜索：以医学专有索引 + 出版商授权语料建立「模型爬不到的数据」——这是对模型层碾压风险的正面解法；对 UpToDate（爱思唯尔旗下，临床决策支持老牌）：以实时性、对话式交互与免费策略进攻其订阅模式；对 PubMed：以 AI 原生体验代差碾压。战果：医生群体病毒式自发采用，人均日使用频次可观，估值 $120 亿、融资效率为医疗 AI 之最。",
+insight:"最锋利的前瞻判断是「先占心智，后变现」：医生的日常检索习惯一旦形成，后续的商业化（药企教育、精准学术推广、医院企业版）是水到渠成的分层收割；其次是内容授权的排他性设计——出版商的独家合作网络本身构成了后来者无法复制的语料壁垒。",
+moatText:"壁垒构成：与 NEJM / JAMA / AMA 等顶级出版商的独家内容合作网络（谈判周期长、先到先得）；医生群体的日常使用习惯（工作流即护城河）；医学专业索引与引用对齐的工程积累。脆弱点：变现仍在早期（结果定价权尚未建立），出版商授权的排他性存续期，以及 EHR 厂商/通用模型的替代压力。",
+monetization:"当前处于「增长优先」阶段：免费策略换取医生渗透，商业化路径已清晰可见——药企学术内容投放（类搜索引擎广告位）、机构订阅、临床决策支持集成。估值 $120 亿与未披露收入之间的落差，是本报告 20 款产品中「信仰成分」最高的一档，但其资本效率（估值/融资额 16.3 倍）同样说明撬动成本极低。",
+assessment:"生命周期判定：增长期成功——用最低的资本消耗拿下医生心智，是「分发即护城河」的经典演绎。尚未验证的是付费转化：医生免费习惯能否顺利切换为机构付费，决定它成为下一个 UpToDate（现金牛）还是下一个「高使用零变现」的遗憾案例。",
+outlook:"3 年：医生检索的默认入口，药企货币化全面铺开，收入开始披露；5 年：长成 AI 原生的临床决策支持平台，与 Abridge 类 scribe、EHR 形成竞合——「证据层」是各方都想吃的位置；10 年：若医学证据的「中立索引层」长期独立存在，OpenEvidence 将是医疗知识基础设施；若被 EHR 或模型厂商吸收整合，其授权网络与医生习惯仍是高价并购资产。",
+verdict:"分发与语料双壁垒的漂亮案例：先拿下医生心智，再用证据网络变现——但付费转化是尚未兑现的另一半故事。"
+},
+/* ---------- 12 Sierra ---------- */
+{
+id:"sierra",name:"Sierra",ava:"SI",cat:"cx",founded:2023,
+tagline:"按「解决量」计价的客服代理——用结果定价把 AI 从成本项变成收入引擎",
+arr:200,arrNote:"$2 亿（$1 亿→$2 亿仅两个季度）",val:15.8,valNote:"$15.8B（2026.5，$9.5 亿 Series E）",
+moat:[4,5,4,5,3,3],
+stats:["ARR <b>$200M</b>（两个季度翻倍）","估值 <b>$15.8B</b>（2026.5）","按解决量计价 <b>≈$1.5/次</b>","七个季度达 $1 亿 ARR"],
+origin:"Bret Taylor（Salesforce 前联席 CEO、OpenAI 前董事会主席）2023 年的判断是：客服是企业 ROI 最可测、决策最快的 AI 代理场景——每一通对话都有明确的成本（人力分钟数）与结果（解决 / 未解决）。灵感核心：既然结果可测，为什么不给 AI 的「解决」直接定价？",
+philosophy:"设计理念围绕「企业买的是解决率，不是模型」：对话只是入口，真正的产品是能执行操作的代理——改订单、退退款、改订阅、升级账户，直连企业后台系统；Agent Lifecycle Platform 管理长期运行代理的测试、评估、守护与合规；品牌语气守护（tone guard）确保代理说话像这家公司，而非像通用模型。",
+competition:"对 Salesforce / Zendesk 等巨头的 AI 模块：以「AI 原生 + 代理可行动」打其转型包袱；对 Decagon（2026.8 达 $1 亿 ARR）等追兵：以财富 500 强标杆客户名单与结果计价的心智占位领先——$2 亿 ARR、估值 $158 亿（2026.5）；对客服外包巨头（Concentrix 等）：不是竞争而是替代关系，$4000 亿全球客服成本池的每一块都是可收割市场。",
+insight:"两个改变品类的设计：其一，结果计价（约 $1.5 / 解决的交互）——把软件合同从成本中心语言（席位、token）改写成价值语言（每次解决省多少人力成本），客户 CFO 的采购心理完全改变；其二，CSAT 与解决率仪表盘成为销售武器——把 AI 的表现做成客户董事会都能看懂的数字，信任以可见的方式积累。",
+moatText:"壁垒构成：结果计价把客户利益与平台收入绑死，替换等于放弃已验证的 ROI 管线；财富 500 强客户名单（保险、电信、零售头部）与逐行业沉淀的操作连接器（CRM、订单、支付系统的集成资产）；平台化能力（测试、评估、合规）形成代理运维的转换成本。脆弱点：Decagon 与 Salesforce 的夹击、客服场景本身的技术壁垒不高、估值对未来增长定价激进。",
+monetization:"变现曲线陡峭：七个季度达 $1 亿 ARR，$1 亿→$2 亿仅两个季度（2026 年报道口径）；按解决量计费天然随客户业务量增长——客户越大、对话越多，收入越自动。估值 $158 亿对应约 79 倍 ARR，是 20 款产品中倍数最高的一档：市场在为「按结果计价」这一新合同范式的普适性出价。",
+assessment:"生命周期判定：成功——企业 AI 代理部署的最清晰标杆，且完成了两件难事：把结果定价做成可规模化的合同、把代理做成可运维的平台。风险记录：估值透支度高、客服赛道竞争密度全 AI 最高（Sierra、Decagon、Salesforce 三方都有 $1 亿级收入）、以及代理事故的责任界定仍在演化。",
+outlook:"3 年：客服代理头部位置大概率守住，但市占率受 Decagon 与巨头挤压；增长更多来自「客服之外」的企业代理场景（销售跟进、续费、对账）；5 年：结果计价若成为企业软件默认范式，Sierra 将从客服公司升维成「企业数字员工平台」；10 年：按结果计费的软件品类领导者——这一定义权之争比客服市场本身更值钱。",
+verdict:"结果计价的定义者：合同形态创新 + 财富 500 强名单构成真壁垒，估值倍数是其最大的自我考验。"
+},
+/* ---------- 13 Decagon ---------- */
+{
+id:"decagon",name:"Decagon",ava:"DE",cat:"cx",founded:2023,
+tagline:"客服代理的「产品化速度派」——靠少用人、快交付对抗 Sierra 的资源碾压",
+arr:100,arrNote:"$1 亿（2026.8，增速 +793%）",val:4.5,valNote:"$4.5B（2026.1 Series D，2026.3 员工要约同价）",
+moat:[3,4,4,4,3,3],
+stats:["ARR <b>$100M</b>（2026.8）","增速 <b>+793%</b>","估值 <b>$4.5B</b>（2026.1）","平台费约 $5 万/年 + 用量计价"],
+origin:"2023 年 Jesse Zhang 创立时的核心观察是：市面上客服 AI 会聊天，不会办事——退款、改订阅、查物流这些「真动作」需要打通后台系统与权限体系。灵感由此成形：客服代理的胜负手是 action（行动）能力，而非 conversation（对话）能力。这个判断后来被整个赛道验证为共识。",
+philosophy:"设计理念两条主线：其一是行动优先的架构——代理原生连接订单、支付、CRM 等系统，直接执行业务操作；其二是「产品化交付」哲学——尽最大努力减少前向部署工程师（forward-deployed engineers）的依赖，用评估体系与自助配置让企业客户快速上线，这与人力密集型的对手形成鲜明的毛利与扩张性差异。",
+competition:"对 Sierra（规模与资本领先）：以产品化速度与年轻团队的工程节奏打错位竞争，拿下航空公司、信用卡公司等对可靠性要求苛刻的大客户；对 Salesforce：以中立与专注对抗巨头的产品广度；对中小玩家：用约 $5 万/年的平台费门槛筛出高价值客户，维持服务密度。战果：2026.8 披露 $1 亿 ARR，增速 +793%，估值 $45 亿。",
+insight:"前瞻判断有二：其一，「支持 = 对话 + 后台操作」，比多数对手更早把重心从 NLU 转向系统集成；其二，评估驱动（evals-driven）的交付方法论——先建立客户场景的评估集再开发，让代理质量可度量、可承诺，这既是工程方法也是销售工具。",
+moatText:"壁垒构成：产品化程度带来的交付效率（单位人力支撑更多客户）；航空、金融等标杆客户的信任背书；全渠道（chat / email / voice / SMS）覆盖的先发完成度。脆弱点：与 Sierra、Salesforce 相比资金与品牌差距明显；客服场景本身的差异化空间收窄；$5 万/年平台费把腰部以下客户挡在门外，而那一端正在被 AI SaaS 化。",
+monetization:"$1 亿 ARR（2026.8），平台费 + 按对话/解决量计价的混合合同；G2 评分 4.8 / 5 的口碑说明交付质量与客户满意度匹配。估值 $45 亿对应当前 ARR 约 45 倍——与 Sierra 相比折价明显，反映市场对「第二名」的定价逻辑，也给了它以增速证明自己的空间。",
+assessment:"生命周期判定：快速上升期的成功——在赛道竞争密度全 AI 最高（Sierra、Salesforce、Intercom 等）的环境里，用产品化哲学抢下了 $1 亿收入与头部客户。它的战役是典型的「老二经济学」：只要增速与交付质量持续领先，资本与客户会同时奖励；一旦增速失速，护城河厚度不足的弱点会暴露。",
+outlook:"3 年：与 Sierra 的前二之争白热化，胜出关键在企业级运维与多场景扩展（从客服扩到销售与留存运营）；5 年：三种路径——独立上市、与 Sierra 形成双寡头、或被 CRM / 云巨头并购（最可能的结局之一）；10 年：若「客户运营代理」成为独立品类，产品化交付能力将成为最持久的比较优势。",
+verdict:"老二经济学的优等生：产品化交付是真优势，但在巨头与 Sierra 夹击下需要持续跑得更快。"
+}
+];
+PRODUCTS.push(
+/* ---------- 14 Glean ---------- */
+{
+id:"glean",name:"Glean",ava:"GL",cat:"knowledge",founded:2019,
+tagline:"企业「Work AI」平台——用权限感知检索解开企业搜索二十年的死结",
+arr:300,arrNote:"$3 亿（+89% YoY，2026 年中口径）",val:7.2,valNote:"$7.2B（Series F $1.5 亿，Sequoia 投）",
+moat:[4,5,4,3,4,3],
+stats:["ARR <b>$300M</b>（+89%/年）","估值 <b>$7.2B</b>","Fortune 500 客户数一年近翻倍","2019 年成立 · ex-Google 团队"],
+origin:"2019 年，前 Google 工程副总裁 Arvind Jain 的观察是：企业内部找东西比互联网搜索难十倍——知识散落在上百个 SaaS 系统里，且每份文档都有权限边界。生成式 AI 到来后灵感闭环：LLM 没有权限概念，企业无法直接用；而「带权限的检索 + 生成」恰好是当年 Google 内部搜索的老问题。Glean 把这个二十年死结当成了新起点。",
+philosophy:"核心理念是「先做对（治理），再做快（智能）」：知识图谱 + 权限感知索引是地基——AI 只回答你有权看的内容；产品形态三级火箭：企业搜索（找到）→ 工作助手（总结、写稿、问答）→ 代理平台（执行跨系统任务）。跨应用中立定位：不偏向任何一家 SaaS 或云厂商，做企业知识的「瑞士」。",
+competition:"对 Microsoft Copilot（分发最强、绑定 365 生态）：以跨应用中立 + 治理深度差异——大企业不愿把全部知识命运绑在单一厂商身上；对 Google 企业搜索产品线：以 AI 原生与工作流整合代差竞争；对 RAG 创业群：以企业级权限、连接器矩阵与部署案例建立代差。战果：$3 亿 ARR（+89%）、Fortune 500 客户一年近翻倍、$72 亿估值。",
+insight:"关键判断是「企业 AI 的第一问题不是智能，而是无权限感知的检索」——直接调模型会把机密文件泄给员工，这是企业采用 AI 的真正刹车；第二个判断是平台演化路径：搜索（工具）→ 助手（入口）→ 代理（平台），每一步都把客户嵌得更深。",
+moatText:"壁垒构成：企业权限与身份系统的集成深度（每家部署都是数百连接器 + 权限映射的工程资产）；跨 SaaS 连接器矩阵的广度；Fortune 500 级部署案例与安全认证。数据飞轮真实存在：企业内部使用数据只属于企业，但 Glean 的跨客户产品理解持续复利。脆弱点：微软 Copilot 的分发压力是行业公认的最大变量，模型层长上下文能力也在侵蚀检索价值。",
+monetization:"$3 亿 ARR（+89% YoY），席位 + 平台混合计价；Series F（$1.5 亿）由 Sequoia 领投，$72 亿估值对应约 24 倍 ARR——在 AI 应用层中属于「增长与估值最匹配」的一档。续约逻辑强：知识助手嵌入日常工作后，摘除成本随时间上升。",
+assessment:"生命周期判定：成功——企业搜索这一被宣判过多次死亡的品类，首次被 AI + 权限治理组合真正攻克。它的战役本质是「中立层对生态绑定层」：Copilot 赢在免费与默认，Glean 赢在跨生态与治理深度，大企业预算正在两者之间分层。",
+outlook:"3 年：Work AI 平台前三站稳，代理平台（Agent 模式）打开第二曲线，ARR 冲击 $6–8 亿；5 年：成为企业代理的「上下文层」——所有代理都需要权限正确的企业知识供给，这是比搜索更战略的位置；10 年：两种结局——长成企业的知识操作系统，或被 OS 级 AI（微软 / 苹果 / 模型厂商）吸收；中立场定位是其长期期权。",
+verdict:"治理先行的聪明仗：权限感知是企业 AI 的真瓶颈，Glean 把合规负担变成了护城河，但需扛住 Copilot 的分发碾压。"
+},
+/* ---------- 15 Perplexity ---------- */
+{
+id:"perplexity",name:"Perplexity",ava:"PX",cat:"knowledge",founded:2022,
+tagline:"答案引擎 → 代理浏览器——用「可溯源」切搜索、用浏览器赌下一个入口",
+arr:450,arrNote:"$4.5 亿+（2026.3，FT 报道口径）",val:22.6,valNote:"$22.6B（2026.1 轮次口径）",
+moat:[3,3,5,3,4,3],
+stats:["ARR <b>$450M+</b>（2026.3）","估值 <b>$22.6B</b>","MAU <b>3400 万</b>","2026.2 放弃广告转纯订阅"],
+origin:"2022 年，ex-OpenAI / ex-DeepMind 团队的判断是：搜索的真实需求从来不是「十个蓝色链接」，而是「一个可信的答案 + 可以核查的出处」。灵感由此成形：把检索增强（RAG）做成消费级产品——每个答案都带引用，把「AI 会胡说」的普遍焦虑转化为「可验证」的产品差异。",
+philosophy:"设计理念一以贯之：「答案优先、引用强制」。产品线沿认知链路扩展：答案引擎（查）→ Comet 浏览器（在网页上下文中代理完成任务）→ Computer / 代理（跨步骤执行）；2026.2 做出关键商业决策——放弃广告模式，转纯订阅，与 Google 的商业模式彻底错位，把「不卖你的注意力」变成卖点。",
+competition:"对 Google（分发之王）：以研究场景细分切割——Google 赢导航与长尾，Perplexity 赢需要综合多源的研究型查询；对 ChatGPT Search：以检索体验与引用密度专注对抗通用对话；对内容生态：诉讼与授权协议并行，逐步把出版商关系从风险转为语料壁垒。战果：ARR 从 2023 年 $700 万到 2026.3 $4.5 亿+（约 64 倍），MAU 3400 万。",
+insight:"两个前瞻动作定义公司：其一，2026.3 把 Comet 浏览器免费化——判断「浏览器是 AI 时代的操作系统入口」，把答案引擎升级为常驻的代理环境；其二，放弃广告——判断 AI 搜索的商业化不该复制搜索引擎的注意力经济，订阅 + 代理用量的货币化与产品价值观自洽。",
+moatText:"壁垒构成：3400 万 MAU 的用户习惯与查询行为数据；研究人群的品牌心智（记者、分析师、学者的默认工具）；引用与来源图谱的工程积累。脆弱点为 20 款产品中最明显之列：Google Gemini 的默认分发、模型厂商的检索原生化、内容授权成本、以及 45 倍 ARR 的估值倍数——护城河主要靠速度与品牌，而非不可复制资产。",
+monetization:"变现曲线全 AI 最陡之列：$7M（2023）→ $63M（2024.12）→ $148M（2025.6）→ $200M（2025.9）→ $450M+（2026.3），单月增速一度 50%；结构为订阅（$20/月 Pro 档）+ 企业版 + API；管理层目标 2026 年底 $6.56 亿、2028 年 IPO。放弃广告是收入结构的关键转折——短期牺牲广告收入，换取订阅心智与数据干净度。",
+assessment:"生命周期判定：高速成功 + 高风险并存——三年 64 倍 ARR 增长证明产品市场契合，但其壁垒厚度（3/5 的护城河评分）与估值（约 45 倍 ARR）之间存在张力。它的赌注是入口前移：如果浏览器/代理形态成立，先发者吃下新入口；如果不成立，搜索本质仍是商品化流量生意。",
+outlook:"3 年：商业化验证年——$6.5 亿目标与 IPO 计划考验订阅渗透与代理用量的真实货币化；5 年：若 Comet 成为千万级日常浏览器，Perplexity 将拿到与 Google 分层共存的入场券（研究 / 代理场景），否则退守利基；10 年：AI 搜索分层格局（导航归巨头、代理研究归专业入口）中争取「专业检索层」的定义权。",
+verdict:"增长奇迹与护城河焦虑的一体两面：入口前移的赌注很有想象力，但品牌之外的不可复制资产仍需补课。"
+},
+/* ---------- 16 ElevenLabs ---------- */
+{
+id:"elevenlabs",name:"ElevenLabs",ava:"EL",cat:"creative",founded:2022,
+tagline:"从配音工具到「音频基础设施」——语音代理时代的人机接口层",
+arr:500,arrNote:"$5 亿（2026.4 口径；2025 年为 $3.3 亿）",val:11,valNote:"$11B（2026.2，$5 亿 Series D，Sequoia 领投）",
+moat:[4,4,5,4,3,4],
+stats:["ARR <b>$500M</b>（2026.4）","估值 <b>$11B</b>（2026.2）","<b>175+ 语言</b>","客户含 OpenAI / Spotify / Uber / MLB"],
+origin:"2022 年，波兰创始团队从深度伪造的争议中看到另一面：配音行业的真实人力瓶颈——有声书、游戏本地化、影视译制依赖昂贵且缓慢的录音棚。灵感是：如果克隆声音的质量足够高（情感、停顿、气息），语音合成就不是玩具，而是整个音频产业的替代性基础设施。",
+philosophy:"设计理念是「保真度是唯一护城河」：把资源全部押在语音的自然度（情感起伏、停顿节奏、多语种口音）上；产品结构从工具到平台三级跳——TTS / 克隆工具（创作者）→ API（开发者）→ 企业语音代理平台（客服、助理、实时翻译）。计价与产品同步进化：订阅 + 按字符 API + 企业合同（单合同至 $200 万级）。",
+competition:"对 OpenAI TTS / Google 语音 API（模型厂商原生能力）：以垂直专注度与质量领先对抗，175+ 语言覆盖与低延迟流式能力是工程护城河——最具说服力的证据是 OpenAI 本身也是其客户；对传统配音与本地化产业：直接替代，价格与速度代差碾压；对开源语音模型：以商业化平台（版权、克隆授权、安全框架）分层。战果：2025 年 $3.3 亿 → 2026.4 $5 亿 ARR，估值 $110 亿。",
+insight:"关键前瞻判断：「语音是 AI 代理的人机接口」——当代理从文字走向语音交互（客服电话、车载、可穿戴），低延迟、高自然度的语音层成为所有代理的必经之路，ElevenLabs 卡位的是这一接口层而非某个应用场景。",
+moatText:"壁垒构成：规模化推理的成本与延迟优势（多年工程优化的复利）；语音数据飞轮（数十亿次合成与反馈）；品牌与创作者生态（个人创作者成为其免费营销渠道）；被模型厂商采购的「供应商证明」。脆弱点：模型厂商的原生语音能力持续进步、语音克隆的监管趋严、估值（约 22 倍 ARR）对增长的高预期。",
+monetization:"变现结构健康：订阅（创作者）+ API 用量（开发者）+ 企业合同（代理平台），ARR $5 亿（2026.4），从 $3.3 亿（2025）稳步爬升；Sequoia 领投的 $5 亿 Series D（2026.2）给了它独立于模型厂商的战略纵深。增长引擎已切换：创作者订阅 → 企业语音代理平台，客单价量级完全不同。",
+assessment:"生命周期判定：成功——完成了从「工具」到「基础设施」的身份跃迁，这是应用层公司最难的一跳。风险记录：语音是模型厂商必然原生化（OpenAI 实时语音 API 等）的领域，ElevenLabs 的长期胜负取决于接口层（延迟、语言覆盖、安全框架、企业集成）的工程复利能否跑赢模型层的通用化。",
+outlook:"3 年：语音代理交互层的事实标准之争——若客服、助理、翻译代理全面语音化，ARR 冲击 $10 亿+；5 年：音频基础设施化——配音、游戏、有声内容、实时译制全部平台化供给，「语音即服务」品类成型；10 年：人机语音接口层——代理无处不在的世界里，说与听的带宽远大于打字，卡住接口层的公司吃长期红利。",
+verdict:"从工具到基础设施的漂亮跃迁：质量保真 + 被模型厂商反向采购是硬通货，需持续跑赢模型原生化的追赶。"
+},
+/* ---------- 17 Midjourney ---------- */
+{
+id:"midjourney",name:"Midjourney",ava:"MJ",cat:"creative",founded:2021,
+tagline:"零融资、约 40 人、$5 亿 ARR——软件史上资本效率的天花板",
+arr:500,arrNote:"$5 亿（2026 年估计，$3 亿为 2025 年口径）",val:null,valNote:"未融资、无外部估值（2025 年与 Meta 达成模型授权合作）",
+moat:[4,3,5,4,5,3],
+stats:["ARR <b>≈$500M</b>（2026 估计）","外部融资 <b>$0</b>","团队约 <b>40 人</b>（人均产出 $12.5M）","四档订阅 $10–120/月 · 盈利"],
+origin:"2021 年，Leap Motion 创始人 David Holz 的判断反直觉而精准：图像生成的竞争点不是「还原照片」而是「美学品味」——用户要的不是相机，是更好的画家。灵感由此成形：把模型训练的方向对准审美（光影、构图、风格化），让输出「一眼好看」成为产品的第一性原理。",
+philosophy:"设计理念四条，条条反主流：Discord 即产品——不做 App 与官网，把分发成本压到零，社区即增长引擎；订阅卖 GPU 时间——$10–120/月四档，商业模式极其朴素；品味即训练目标——版本迭代（V1 至 V7）持续向社区公认的审美方向优化；小团队高信任——约 40 人无管理层级，研究密集、组织极简。",
+competition:"对 OpenAI DALL·E / Adobe Firefly / 开源 FLUX：以风格美学与社区口碑守住「最好看」的心智——通用模型拼还原度与合规，Midjourney 拼品味；对 Adobe 的版权攻势（Firefly 主打可商用训练数据）：以创作者社区的真实偏好回应；2025 年与 Meta 达成模型授权合作，把模型能力本身变成了收入（平台化的第一信号）。战果：约 $3 亿（2025）→ $5 亿（2026 估计）ARR，全程零融资。",
+insight:"两个稀缺判断：其一，「品味是可训练的社区资产」——数千万用户的 curation（选图、收藏、混合风格）行为构成美学反馈数据，这是别的模型公司拿不到的训练信号；其二，盈利纪律即战略自由——不拿 VC 的钱，就不需要追逐企业市场与通用能力，可以十年如一日地只服务创作者的审美需求。",
+moatText:"壁垒构成：社区网络效应（创作者、风格生态、提示词文化全部沉淀在 Discord 与产品内）；「Midjourney 风」的品牌资产（视觉风格的代名词）；零融资下的盈利纪律带来的战略耐心；美学反馈数据飞轮。脆弱点：无企业级销售、无 API 生态（授权合作刚起步）、开源模型的审美追赶、生成式需求向编辑 / 代理场景的迁移。",
+monetization:"变现模型极简且被验证到底：纯订阅四档，$5 亿 ARR（2026 估计）全部来自用户直接付费——无企业合同、无广告、无融资。人均产出约 $1250 万美元/年，为软件史最高之列。2025 年 Meta 授权合作开启了第二收入曲线（模型能力变现），这是其从社区产品走向平台的关键试探。",
+assessment:"生命周期判定：成功，且是「反共识的完整胜利」——在所有人烧钱抢企业市场时，它用 40 人和零融资证明了消费级 AI 订阅的独立生存能力。战略悬念：Discord 形态的宿主依赖、生成需求的天花板、以及是否进军视频 / 3D 以打开第二战场。",
+outlook:"3 年：图像生成的品味冠军守住，视频生成（已发布 V1 视频模型）的成败决定天花板；5 年：两条路——保持小而美的高利润现金牛，或借 Meta 式授权合作平台化，成为「美学模型供应商」；10 年：若创作审美仍需要「风格化智能」，Midjourney 的社区与品味壁垒长存；若通用模型在审美维度追平，其独立价值将被稀释。",
+verdict:"品味与纪律的双重胜利：零融资 $5 亿 ARR 是对「AI 必须烧钱」叙事最优雅的反驳，第二曲线选择是接下来的看点。"
+},
+/* ---------- 18 Gamma ---------- */
+{
+id:"gamma",name:"Gamma",ava:"GA",cat:"creative",founded:2020,
+tagline:"AI 原生演示工具——$9100 万融资做到 $1 亿 ARR 的资本效率之王",
+arr:100,arrNote:"$1 亿+（年化收入口径）",val:2.1,valNote:"$2.1B（Forbes AI 50 2026）",
+moat:[3,4,4,3,2,2],
+stats:["ARR <b>$100M+</b>","估值 <b>$2.1B</b>","团队仅 <b>50 人</b> · 累计融资仅 $91M","资本效率为 Forbes AI 50 之最"],
+origin:"2020 年，前 Airbnb / Stripe 背景团队的洞察是：幻灯片的本质不是排版而是叙事——人们卡在「怎么组织内容」远多于「怎么对齐文本框」。AI 到来后灵感闭环：让模型先生成叙事结构（大纲、论点、故事线），再渲染成视觉——把「写 PPT」这个高频痛苦的知识工作压缩成一次对话。",
+philosophy:"设计理念三条：结构优先——先生成可编辑的大纲叙事，再谈视觉呈现；模板自由——卡片式流式布局摆脱 16:9 幻灯片的物理束缚，同一内容可输出幻灯 / 网页 / 文档三种形态；病毒式免费层——免费额度驱动个人用户自发传播（产品自己会卖自己），再以 Pro / 团队档转化。50 人团队保持极致精简，工程效率即商业模型。",
+competition:"对 PowerPoint / Google Slides（绝对巨头）：不正面拼功能清单，拼「从零到成品」的速度代差——十分钟产出可用的演示 vs 一小时手动排版；对 Canva（模板库巨头）：以生成优先对模板优先错位；对同代 AI 演示工具（Tome、Beautiful.ai 等，多数已停滞或转向）：以执行力与迭代速度完成清场。战果：$1 亿+ ARR、$21 亿估值、50 人团队。",
+insight:"前瞻判断有二：其一，「文档 → 演示」的转换是知识工作的高频刚需，且付费意愿明确（职场表现直接可见）；其二，资本效率是独立创业者的生存策略——不烧钱做大市场教育，用免费层的网络传播把获客成本压到接近零。",
+moatText:"壁垒构成为 20 款产品中最薄之列：品牌与资本效率的口碑；模板与叙事结构的积累；免费层带来的用户基数。脆弱点：通用模型可以直接生成 PPT（Office / Google 原生 AI 化）、场景纵深有限（演示是单点而非工作流）、网络效应弱。它的防御策略只能靠持续的速度与体验代差。",
+monetization:"变现健康但天花板待验证：$1 亿+ ARR，订阅制（免费 / Plus / 团队档）；融资仅 $9100 万即达 $21 亿估值，资本效率为 Forbes AI 50 2026 全榜之最——这个数字本身就是其品牌故事的一部分。",
+assessment:"生命周期判定：成功（以效率论）——证明了 AI 原生工具可以用极小团队吃下巨头的边缘市场。但战略处境微妙：演示是 Office 的核心腹地，微软的 AI 原生化（Copilot in PowerPoint）随时可能压缩其差异空间；它必须把单点工具长成「商务叙事套件」（网页、提案、报告）才能跳出夹缝。",
+outlook:"3 年：演示类 AI 默认工具之一，ARR 冲击 $2–3 亿，向文档 / 网页 / 提案扩展；5 年：成为「商务叙事工具套件」或被 Office AI 的进步逼回利基——两种命运的分界线在于工作流纵深；10 年：长期独立存在的前提是把品牌变成「快速产出专业叙事」的默认动词，否则并入巨头生态是合理归宿。",
+verdict:"资本效率的极限样本：产品判断与执行一流，但护城河厚度决定了它必须在巨头反应过来之前长得更深。"
+},
+/* ---------- 19 Ramp ---------- */
+{
+id:"ramp",name:"Ramp",ava:"RA",cat:"finsvc",founded:2019,
+tagline:"AI 原生企业财务平台——从省钱卡到「管住 AI 支出」的新税层",
+arr:1000,arrNote:"$10 亿+，自由现金流为正",val:44,valNote:"$44B（2026.6，$7.5 亿 Series F）",
+moat:[4,5,5,4,3,4],
+stats:["ARR <b>$1B+</b> · FCF 为正","估值 <b>$44B</b>（2026.6，一年近三倍）","毛利率 65–75%（软件层）","2019 年成立"],
+origin:"2019 年创始团队的观察很朴素：企业花钱的每个环节都有损耗——报销拖沓、对账手工、采购失控。切入点选择公司卡（interchange 手续费）——一种不向客户收费的商业模式，再往上叠加 AI 自动化（记账、报销、审批、风控）。灵感核心：用「帮你省钱」而非「卖你软件」获客，产品即营销。",
+philosophy:"设计理念三层：数据先行——每一笔交易都是数据资产，火箭式增长的交易流持续训练风控与自动化模型；软件吃金融——支付轨道（interchange）只是获客手段，真正的利润池在软件层（费控、记账自动化、会计集成），毛利率因此达 65–75%，远高于纯金融玩法；AI 原生自动化——收据匹配、编码、异常检测全部模型化，把财务团队从对账里解放出来。",
+competition:"对 Brex / Mercury 等同代金融科技：以「省钱 + 正现金流」的差异（对手多为烧钱换增长）拉开身位；对 SAP Concur 等传统费控：以 AI 自动化代差碾压其手工流程；2026 年的关键动作是把叙事升级为「帮 CFO 管住 AI token 支出」——AI 时代的公司新增了模型账单这种没有预算科目的支出，Ramp 第一个把它变成产品。战果：估值从 $16B（2025）到 $44B（2026.6），一年近三倍，ARR $10 亿+ 且自由现金流为正。",
+insight:"两个前瞻判断正在兑现：其一，「AI 代理会替人花钱」——代理订阅、API 用量、token 预算是全新的企业支出类别，第一个管住它的平台获得新税层身份；其二，金融基础设施的 AI 原生化不可逆——从费控扩展到记账、税务、资金管理，最终成为 ERP 的替代者而非插件。",
+moatText:"壁垒构成：支付数据网络效应（交易流越大→风控与自动化越准→客户越离不开）；企业财务工作流的深度嵌入（会计系统集成、审批链、卡体系的替换成本）；正现金流带来的战略耐心；「AI 支出管理」的心智先发。脆弱点：金融科技的监管与信用风险、巨头（银行 + ERP 厂商）的复制、以及 interchange 模式对宏观利率环境的暴露。",
+monetization:"变现模型为 20 款产品中最扎实之列：ARR $10 亿+ 且自由现金流为正（AI 应用层极少数）；收入 = interchange + 软件订阅 + 用量，软件层毛利率 65–75%；$44B 估值（2026.6 Series F）约 44 倍 ARR——市场按「fintech × SaaS × AI」的复合身份定价。",
+assessment:"生命周期判定：成功——从公司卡这一同质化红海出发，靠「省钱 + 自动化 + 现金流纪律」长成 AI 原生金融平台的头部样本。它的下一步战役（ERP 替代 + 代理商务协议）比已赢下的战役难一个量级，但卡位（管住企业与 AI 的钱流）极具战略纵深。",
+outlook:"3 年：AI 支出管理成为标配模块，ARR 冲击 $20–30 亿，IPO 窗口开启；5 年：企业金融操作系统——记账、税务、资金、采购全链路自动化，正面进攻 ERP 市场的青年段客户；10 年：若代理商务（AI 代理自主交易）成型，Ramp 有机会成为「代理经济的清算与治理层」——这是它估值想象力的最终来源。",
+verdict:"最扎实的 AI 原生金融样本：数据网络 + 正现金流 + 新税层叙事，护城河随每一笔交易复利增厚。"
+},
+/* ---------- 20 Clay ---------- */
+{
+id:"clay",name:"Clay",ava:"CL",cat:"finsvc",founded:2021,
+tagline:"GTM 团队的「电子表格 × AI 代理」——把数据富化做成增长团队的工作流底座",
+arr:100,arrNote:"$1 亿+（2025 年披露口径）",val:3.1,valNote:"$3.1B（2025 轮），2026 年二级市场 $5B",
+moat:[4,4,3,3,3,3],
+stats:["ARR <b>$100M+</b>","估值 <b>$3.1B</b>（二级市场 $5B）","100+ 数据连接器","2026 主动降价 50–90% 换规模"],
+origin:"2021 年，团队观察到 GTM（市场进入）团队的数据地狱：销售与市场人员每天在几十个数据源、表格与外联工具之间搬运信息。灵感是把「电子表格」这个万物底座与 AI 结合——电子表格的网格是天然的工作流画布，AI 代理是每个单元格里的研究员。这个「Excel × AI」的形态让非技术用户零学习成本上手。",
+philosophy:"设计理念三条：工作流优先——不做数据库（那是对手 ZoomInfo 的生意），做灵活的数据工作流引擎；AI 代理内置——「水彩笔」式研究代理自动上网查证、富化、推断每个字段；定价透明化——对前沿模型用量零加价（按历史运行的 75 分位预估、多退少补），把 AI 成本的信任问题变成卖点。",
+competition:"对 ZoomInfo / Apollo（数据老牌）：以工作流灵活性 + AI 代理对抗静态数据库；对 Salesforce / HubSpot 的 AI 原生化：以中立与轻量差异（不绑 CRM 生态）；2026 年的关键动作是主动重构定价——数据点成本下调 50–90%，官方直言「收入与利润负增长也在所不惜」——用降价换渗透率与数据飞轮，这在 $31 亿估值公司中极为罕见。战果：ARR $1 亿+，二级市场估值 $50 亿。",
+insight:"前瞻判断有二：其一，「GTM 的护城河是工作流灵活性而非数据所有权」——数据源会被商品化，但沉淀在工作流里的配方与模板不会；其二，社区内容飞轮——用户分享的模板与配方构成自我繁殖的生态，这是从工具到平台的关键一跃。",
+moatText:"壁垒构成：工作流粘性（团队的表格、配方、连接器配置越用越深）；模板与配方的社区生态（内容飞轮）；AI 用量的透明定价带来的信任资产。脆弱点：数据源上游（Clearbit 等）被收购或提价的风险、Salesforce / HubSpot 原生 AI 的挤压、以及 2026 年主动降价所暗示的竞争压力——规模与飞轮能否跑赢毛利牺牲有待验证。",
+monetization:"ARR $1 亿+，席位 + 数据点 + AI 用量三层计价；2026 年降价 50–90% 是一次罕见的公开战略选择——刚融资 $31 亿估值就主动砍收入结构，赌的是渗透率 → 数据飞轮 → 平台锁定这条长链路。短期变现能力被削弱，换取的是长期渗透的期权。",
+assessment:"生命周期判定：中段成功——增长与品牌俱佳（GTM 从业者的默认工具之一），但 2026 年的降价动作暴露了赛道竞争的白热化。它的核心悬念：当 CRM 巨头的 AI 追平体验后，中立工作流层的独立性还剩多少。",
+outlook:"3 年：GTM AI 工作流的标准工具，降价换来的渗透率开始变现（ARR 冲击 $2–3 亿）；5 年：两种命运——长成独立的「增长引擎」平台，或被 CRM / 数据巨头并购（合理性随时间上升）；10 年：若「AI 员工做 GTM」成立，Clay 的位置是这些员工的编排台——这一叙事能否兑现是其长期期权。",
+verdict:"工作流粘性的真实样本，但护城河中等：降价换飞轮是勇敢的一手棋，成败取决于渗透速度能否跑赢巨头原生化。"
+}
+);
+
+/* ================= 失败对照案例 ================= */
+const FAILURES = [
+{
+name:"Jasper AI",ava:"JA",headline:"从 $15 亿估值到收入腰斩：被 ChatGPT 一个发布日击穿的「AI 文案之王」",
+stats:["融资 $1.31 亿 · 2022 年估值 $1.5B","ARR 峰值约 $1.2 亿（2023）","2024 年跌至 $3500 万–5500 万","内部估值下调 20%"],
+story:"2022 年 Jasper 是最快的 AI 独角兽：GPT-3 的封装 + 营销文案模板，六周内拿下 $1.25 亿 A 轮、$15 亿估值、$8000 万+ ARR，客户包括 Airbnb。六周后 ChatGPT 上线——同样的模型能力，免费、通用、体验更好。Jasper 的 ARR 从 2023 年峰值约 $1.2 亿跌到 2024 年的 $3500 万–5500 万，内部估值下调 20%，CEO 更替。幸存路径：彻底转向企业营销工作流（品牌语调管理、团队协作、合规审核、营销系统集成），卖「营销运营」而非「AI 写作」。",
+why:"死因解剖：产品价值 = 模型访问权 + 提示词模板，两者都在 ChatGPT 免费化当天归零；没有专有数据（文案无积累效应）、没有工作流嵌入（复制粘贴即可离开）、没有分发壁垒（靠投放获客）。这是「你不能用别人的核心技术建护城河」的教科书案例——模型厂商一次版本更新就是你的灭顶之日。",
+lesson:"对照活法：同样始于 wrapper 的 Cursor 把重注押在交互重构与代码库索引；Harvey 把价值做进律所私有语料。wrapper 起点不可耻，停在 wrapper 才致命。"
+},
+{
+name:"Humane AI Pin",ava:"HP",headline:"$2.41 亿融资的「后智能手机」叙事，止步于 1 万台销量与 $1.16 亿资产出售",
+stats:["融资 $2.41 亿 · 前苹果设计师创始","目标销量 10 万台 · 实际约 1 万台","MKBHD 评「最差产品」","2025.2 关停 · HP $1.16 亿收购资产"],
+story:"前苹果高管团队融资 $2.41 亿打造 AI Pin——激光投影交互、无屏幕、替代智能手机的宏大叙事，2024.4 发布即灾难：发热、延迟、续航崩坏、核心功能依赖手机热点。头部评测人 MKBHD 称之为他评过的最差产品。销量约 1 万台（目标 10 万），2025 年 2 月关停，惠普以 $1.16 亿收购资产与团队——不到融资额的一半。",
+why:"死因解剖：为「替代手机」的技术愿景发明任务，而非从用户的真实任务出发；硬件 + AI 双重新市场的叠加风险（任一层的成熟度都不足）；把发布日当成营销时刻而非质量关卡——产品主义缺失使一切叙事反噬。AI 硬件的根本困境：手机的算力、屏幕与生态优势恰恰是 AI 体验最好的载体。",
+lesson:"对照活法：入选的 20 款产品无一例外从「一线观察到的具体损耗」出发（医生的文书倦怠、律师的重复劳动、开发者的上下文切换），先有任务后有技术。愿景先行于任务，是 AI 产品最贵的一种死法。"
+},
+{
+name:"Windsurf（Codeium）",ava:"WS",headline:"一年三易其主：价格战先锋的品牌沉浮录",
+stats:["Codeium → Windsurf → Cognition 收购（2025.7）","2026.6 更名 Devin Desktop（无 opt-out）","2026.3 失去价格优势（与 Cursor 同价）","估值一度 $30 亿（收购报道口径）"],
+story:"Codeium 靠免费 + 低价策略在 AI 编程市场掀起价格战，改名 Windsurf 后以 Cascade 代理与激进定价成为 Cursor 最凶的对手，2025 年一度传出 $30 亿估值被 OpenAI 收购的风波，最终 2025.7 被 Cognition 收购。此后命运急转：2026.3 定价上调至与 Cursor 同档（价格优势清零），2026.6 被 Cognition 无预警更名 Devin Desktop——用户一觉醒来发现品牌消失。社区信任与口碑资产在一年内耗尽。",
+why:"死因解剖（未死但被结构性削弱）：其一，把「更便宜」当护城河——价格优势是最易复制的竞争维度，提价当天即清零；其二，品牌三易其主 + 无 opt-out 更名，摧毁了开发者社区最珍贵的信任资产；其三，融资节奏与控制权结构使产品沦为并购筹码，用户利益让位于资本运作。",
+lesson:"对照活法：Cursor 面对同样的价格战，选择把资源投向产品深度（Composer / Agent / 企业合规）与社区信任——开发者的「对抗采购也要用」是花钱买不到的壁垒。价格战在 AI 应用层没有赢家，只有幸存者。"
+},
+{
+name:"薄壳 Wrapper 群像（Copy.ai 等）",ava:"WR",headline:"80% 将出局：模型厂商一次更新就吸收你全部功能的「封装层创业」",
+stats:["CB Insights / Gartner：约 80% wrapper 预计 2026 年底前失败","OpenAI 一年吸收 200+ 获投 wrapper 功能","60–70% wrapper 零收入（SimpleClosure 口径）","90 天流失率约 65%（SaaS 均值约 35%）"],
+story:"2023–2024 年，数千支团队用同一个公式创业：调用 GPT API + 垂直提示词 + 精美 UI，覆盖写作、求职、法律咨询、情感陪伴等上百个场景。Copy.ai 是典型样本——融资 $1600 万、$1000 万 ARR、庞大免费层，但核心功能就是「GPT + 界面」，被迫不断叠加工作流工具求粘性。2024–2026 年，模型厂商的多模态、记忆、代理能力一波发布，把这层封装成批变成了免费标配；统计口径下 60–70% 的 wrapper 零收入，90 天流失率约为 SaaS 两倍。",
+why:"死因解剖：模型能力每一次跃迁都会吞掉「纯封装层」的价值——你的产品差值 = 模型最新版本与基线版本之差，且随时归零；无专有数据、无工作流嵌入、无分发，三种壁垒一个都不占；获客靠投放，留存靠惯性，两头都最贵。",
+lesson:"五护城河生存公式（Bessemer 框架）：数据飞轮、工作流集成、分发、品牌、网络效应——模型厂商发版说明里塞不进去的东西，才是你活下来的全部理由。入选的 20 款产品每一家至少占两条。"
+}
+];
+
+/* ================= 图表数据 ================= */
+const FUNNEL = [
+{label:"权威榜单池（Forbes AI 50 / CB Insights AI 100 / a16z Top 100 / TIME / G2，2024–2026 两届）",n:200},
+{label:"反复上榜 + 有实质公开信息（融资 / 收入 / 产品披露）的产品",n:120},
+{label:"通过三重标准初筛（护城河证据 + 变现验证 + 长期空间）",n:40},
+{label:"入选深度分析（覆盖 9 大赛道，含 4 例失败对照）",n:20}
+];
+const SPEED = [
+{name:"ElevenLabs",m:12,est:false,note:"约 12 个月（2025.1 达 $1 亿）"},
+{name:"Cursor",m:14,est:true,note:"约 14 个月（按 $1B 用时 21 个月口径回推）"},
+{name:"Legora",m:18,est:false,note:"18 个月（Bessemer 口径，企业软件史上最快）"},
+{name:"Sierra",m:21,est:false,note:"约 21 个月（七个季度口径，另有 26 个月口径）"},
+{name:"Harvey",m:24,est:false,note:"约 24 个月"},
+{name:"Abridge",m:24,est:true,note:"约 24 个月（scribe 产品 2023 年上线口径推算）"},
+{name:"Perplexity",m:30,est:true,note:"约 30 个月（2025 年中过 $1.5 亿，推算）"},
+{name:"Decagon",m:33,est:true,note:"约 33 个月（2023 年创立 → 2026.8 达 $1 亿，推算）"},
+{name:"Gamma",m:36,est:true,note:"约 36 个月（推算）"},
+{name:"EvenUp",m:40,est:true,note:"约 40 个月（2019 年创立，AI 规模化自 2022，推算）"}
+];
+const GROWTH = [
+{name:"Cursor",color:"#7c3aed",pts:[[2025.0,100],[2025.5,500],[2025.75,1000],[2026.15,2000]]},
+{name:"Perplexity",color:"#0891b2",pts:[[2023.2,7],[2024.95,63],[2025.45,148],[2025.7,200],[2026.2,450]]},
+{name:"Harvey",color:"#b45309",pts:[[2025.3,50],[2026.2,190],[2026.55,300]]},
+{name:"Sierra",color:"#db2777",pts:[[2025.4,100],[2026.35,200]]},
+{name:"ElevenLabs",color:"#e11d48",pts:[[2025.1,330],[2026.3,500]]},
+{name:"Glean",color:"#0284c7",pts:[[2025.45,159],[2026.45,300]]},
+{name:"Midjourney",color:"#4f46e5",pts:[[2024.1,200],[2025.1,300],[2026.1,500]]}
+];
+/* ================= 工具 ================= */
+const $=s=>document.querySelector(s), $$=s=>document.querySelectorAll(s);
+const SVGNS="http://www.w3.org/2000/svg";
+function sv(tag,attrs,parent){const e=document.createElementNS(SVGNS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);if(parent)parent.appendChild(e);return e;}
+function txt(e,s){e.textContent=s;return e;}
+const fmtM=v=>v>=1000?("$"+(v/1000).toFixed(1).replace(/\.0$/,"")+"B"):("$"+v+"M");
+function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;");}
+const TIP=$("#tooltip");
+function tipOn(html,ev){TIP.innerHTML=html;TIP.style.opacity=1;moveTip(ev);}
+function moveTip(ev){const pad=14,w=TIP.offsetWidth,h=TIP.offsetHeight;let x=ev.clientX+pad,y=ev.clientY+pad;if(x+w>innerWidth-8)x=ev.clientX-w-pad;if(y+h>innerHeight-8)y=ev.clientY-h-pad;TIP.style.left=x+"px";TIP.style.top=y+"px";}
+function tipOff(){TIP.style.opacity=0;}
+function bindTip(el,html){el.addEventListener("mousemove",moveTip);el.addEventListener("mouseenter",ev=>tipOn(html,ev));el.addEventListener("mouseleave",tipOff);}
+function rating(p){return 2*MOAT_W.reduce((a,w,i)=>a+w*p.moat[i],0);}
+
+/* ================= 产品卡渲染 ================= */
+const FIELDS=[["origin","灵感起源","产品从哪里来：创始人在一线看到了什么，技术与窗口如何相遇"],["philosophy","设计理念与优势","产品被怎样设计，为什么这样设计是对的"],["competition","竞争攻防","对手是谁，如何应对，战况如何"],["insight","前瞻性产品洞见","哪些判断走在了行业前面，构成了今天的壁垒"],["moatText","护城河结构","六维拆解：什么在自我增强，什么在漏气"],["monetization","变现能力","收入结构、合同形态与单位经济"],["assessment","生命周期评估","目前走到哪一步，成功与风险各是什么"],["outlook","未来 3·5·10 年","短中长期的空间与变数"]];
+function renderProducts(){
+  const grid=$("#prodGrid");grid.innerHTML="";
+  PRODUCTS.forEach(p=>{
+    const c=CATS[p.cat],r=rating(p);
+    const card=document.createElement("article");
+    card.className="prod";card.id="p-"+p.id;card.style.setProperty("--cat",c.color);
+    let chips=p.stats.map(s=>'<span class="s">'+s+'</span>').join("");
+    let sections=FIELDS.map((f,i)=>'<h4><span class="n">'+(i+1)+'</span>'+f[1]+'<span style="font-weight:600;color:#9aa3b8;font-size:12px;margin-left:2px">'+f[2]+'</span></h4><p>'+p[f[0]]+'</p>').join("");
+    let mb='<div class="moat-bars">'+p.moat.map((m,i)=>'<div class="moat-bar"><div class="t"><span>'+MOAT_DIMS[i]+'</span><b>'+m+'/5</b></div><div class="bar"><i style="width:'+(m/5*100)+'%"></i></div></div>').join("")+'</div>';
+    card.innerHTML=
+    '<div class="prod-head"><div class="prod-ava">'+p.ava+'</div><div><h3><a href="#p-'+p.id+'">'+esc(p.name)+'</a><span class="tag" style="color:'+c.color+';background:'+c.color+'14;border-color:'+c.color+'33">'+c.name+'</span></h3><div class="tagline">'+esc(p.tagline)+'</div></div><div class="prod-score"><div class="v">'+r.toFixed(1)+'</div><div class="l">护城河评分</div></div></div>'+
+    '<div class="statrow">'+chips+'</div>'+
+    '<div class="prod-body">'+sections+
+    '<h4><span class="n">9</span>护城河六维打分</h4>'+mb+
+    '<div class="verdict"><div class="ic">📌</div><p><b>一句话结论：</b>'+esc(p.verdict)+'</p></div>'+
+    '</div>';
+    grid.appendChild(card);
+  });
+  // 失败案例
+  const fg=$("#failGrid");fg.innerHTML="";
+  FAILURES.forEach(f=>{
+    const card=document.createElement("article");
+    card.className="prod fail";
+    let chips=f.stats.map(s=>'<span class="s">'+s+'</span>').join("");
+    card.innerHTML=
+    '<div class="prod-head"><div class="prod-ava">'+f.ava+'</div><div><h3>'+esc(f.name)+'<span class="tag" style="color:#b91c1c;background:#fef2f2;border-color:#fecaca">失败对照</span></h3><div class="tagline">'+esc(f.headline)+'</div></div></div>'+
+    '<div class="statrow">'+chips+'</div>'+
+    '<div class="prod-body">'+
+    '<h4><span class="n">A</span>发生了什么</h4><p>'+f.story+'</p>'+
+    '<h4><span class="n">B</span>死因解剖</h4><p>'+f.why+'</p>'+
+    '<h4><span class="n">C</span>对照活法（与入选产品互证）</h4><p>'+f.lesson+'</p>'+
+    '</div>';
+    fg.appendChild(card);
+  });
+}
+
+/* ================= 筛选器 ================= */
+function renderFilters(){
+  const box=$("#filters");
+  const mk=(id,label)=>{const b=document.createElement("button");b.textContent=label;b.dataset.f=id;if(id==="all")b.classList.add("on");b.onclick=()=>{$$("#filters button").forEach(x=>x.classList.remove("on"));b.classList.add("on");$$(".prod:not(.fail)").forEach(c=>{c.style.display=(id==="all"||c.querySelector(".tag").textContent===CATS[id].name)?"":"none";});};box.appendChild(b);};
+  mk("all","全部 20 款");
+  Object.keys(CATS).forEach(k=>{const n=PRODUCTS.filter(p=>p.cat===k).length;mk(k,CATS[k].name+" "+n);});
+}
+
+/* ================= 图表：漏斗 ================= */
+function chartFunnel(){
+  const W=860,H=330,el=$("#funnelChart");
+  const svg=sv("svg",{viewBox:"0 0 "+W+" "+H},el);
+  const shorts=["权威榜单池","复现与信息核查","三重标准初筛","深度分析入选"];
+  const maxW=680,x0=(W-maxW)/2;
+  const ws=FUNNEL.map(f=>Math.sqrt(f.n/200)*maxW);
+  FUNNEL.forEach((f,i)=>{
+    const w=ws[i],x=(W-w)/2,y=18+i*78,h=52;
+    const g=sv("g",{style:"cursor:default"},svg);
+    sv("rect",{x:x,y:y,width:w,height:h,rx:12,fill:"url(#fgrad"+i+")"},g);
+    const t1=sv("text",{x:W/2,y:y+22,"text-anchor":"middle",fill:"#fff","font-size":15,"font-weight":800},g);txt(t1,shorts[i]+" — "+f.n+" 款");
+    const t2=sv("text",{x:W/2,y:y+41,"text-anchor":"middle",fill:"#ffffffcc","font-size":10.5},g);txt(t2,f.label.length>66?f.label.slice(0,64)+"…":f.label);
+    if(i<FUNNEL.length-1){sv("path",{d:"M "+x+" "+(y+h)+" L "+(x+30)+" "+(y+h+26)+" M "+(x+w)+" "+(y+h)+" L "+(x+w-30)+" "+(y+h+26),stroke:"#c7cdfa","stroke-width":2,fill:"none","stroke-dasharray":"4 4"},svg);}
+  });
+  const defs=sv("defs",{},svg);
+  const cols=["#4f46e5","#6d5ae8","#8b6aec","#a855f7"];
+  FUNNEL.forEach((f,i)=>{const g=sv("linearGradient",{id:"fgrad"+i,x1:0,y1:0,x2:1,y2:0},defs);sv("stop",{offset:"0%","stop-color":cols[i]},g);sv("stop",{offset:"100%","stop-color":cols[i]+"bb"},g);});
+}
+
+/* ================= 图表：环形 ================= */
+function chartDonut(){
+  const counts={};PRODUCTS.forEach(p=>counts[p.cat]=(counts[p.cat]||0)+1);
+  const data=Object.keys(counts).map(k=>({k,n:counts[k],c:CATS[k].color,name:CATS[k].name}));
+  const W=560,H=300;
+  const svg=sv("svg",{viewBox:"0 0 "+W+" "+H},$("#donutChart"));
+  const cx2=140,cy2=150,R=105,r=64;let a0=-Math.PI/2;
+  data.forEach(d=>{
+    const a1=a0+d.n/PRODUCTS.length*2*Math.PI;
+    const large=(a1-a0)>Math.PI?1:0;
+    const p1=[cx2+R*Math.cos(a0),cy2+R*Math.sin(a0)],p2=[cx2+R*Math.cos(a1),cy2+R*Math.sin(a1)];
+    const p3=[cx2+r*Math.cos(a1),cy2+r*Math.sin(a1)],p4=[cx2+r*Math.cos(a0),cy2+r*Math.sin(a0)];
+    const path=sv("path",{d:"M "+p1[0]+" "+p1[1]+" A "+R+" "+R+" 0 "+large+" 1 "+p2[0]+" "+p2[1]+" L "+p3[0]+" "+p3[1]+" A "+r+" "+r+" 0 "+large+" 0 "+p4[0]+" "+p4[1]+" Z",fill:d.c,stroke:"#fff","stroke-width":2},svg);
+    bindTip(path,"<b>"+d.name+"</b><br>入选产品数："+d.n+" 款<br>占比 "+Math.round(d.n/PRODUCTS.length*100)+"%");
+    a0=a1;
+  });
+  const t=sv("text",{x:cx2,y:cy2-4,"text-anchor":"middle","font-size":26,"font-weight":900,fill:"#111834"},svg);txt(t,"20");
+  const t2=sv("text",{x:cx2,y:cy2+18,"text-anchor":"middle","font-size":11,fill:"#64748b"},svg);txt(t2,"款入选产品");
+  data.forEach((d,i)=>{
+    const y=40+i*26;
+    const rect=sv("rect",{x:290,y:y-9,width:11,height:11,rx:3,fill:d.c},svg);
+    const a=sv("text",{x:310,y:y,"font-size":12.5,fill:"#374151","font-weight":700},svg);txt(a,d.name);
+    const b=sv("text",{x:W-10,y:y,"font-size":12.5,fill:"#64748b","text-anchor":"end"},svg);txt(b,d.n+" 款 · "+PRODUCTS.filter(p=>p.cat===d.k).map(p=>p.name.split("（")[0]).slice(0,2).join(" / ")+(counts[d.k]>2?" 等":""));
+  });
+}
+
+/* ================= 图表：六维雷达（分组平均） ================= */
+function chartRadar(){
+  const groups=[["模型与基础设施（4 款）",["model","infra"],"#4f46e5"],["垂直行业代理（9 款）",["legal","health","cx","finsvc"],"#047857"],["水平工具与平台（7 款）",["dev","knowledge","creative"],"#db2777"]];
+  const series=groups.map(g=>{
+    const ps=PRODUCTS.filter(p=>g[1].includes(p.cat));
+    return {name:g[0],color:g[2],vals:MOAT_DIMS.map((_,i)=>ps.reduce((a,p)=>a+p.moat[i],0)/ps.length)};
+  });
+  const W=560,H=330,cx=280,cy=168,R=112;
+  const svg=sv("svg",{viewBox:"0 0 "+W+" "+H},$("#moatRadar"));
+  const ang=i=>-Math.PI/2+i*2*Math.PI/MOAT_DIMS.length;
+  for(let ring=1;ring<=5;ring++){
+    const pts=MOAT_DIMS.map((_,i)=>[(cx+R*ring/5*Math.cos(ang(i))).toFixed(1),(cy+R*ring/5*Math.sin(ang(i))).toFixed(1)]);
+    sv("polygon",{points:pts.map(p=>p.join(",")).join(" "),fill:ring===5?"#f8f9fd":"none",stroke:"#e2e8f0","stroke-width":1},svg);
+  }
+  MOAT_DIMS.forEach((d,i)=>{
+    const x=cx+R*Math.cos(ang(i)),y=cy+R*Math.sin(ang(i));
+    sv("line",{x1:cx,y1:cy,x2:x,y2:y,stroke:"#e2e8f0"},svg);
+    const lx=cx+(R+26)*Math.cos(ang(i)),ly=cy+(R+26)*Math.sin(ang(i));
+    const t=sv("text",{x:lx,y:ly+4,"text-anchor":Math.abs(Math.cos(ang(i)))<0.3?"middle":(Math.cos(ang(i))>0?"start":"end"),"font-size":11.5,"font-weight":700,fill:"#475569"},svg);txt(t,d);
+  });
+  series.forEach(s=>{
+    const pts=s.vals.map((v,i)=>[(cx+R*v/5*Math.cos(ang(i))).toFixed(1),(cy+R*v/5*Math.sin(ang(i))).toFixed(1)]);
+    const poly=sv("polygon",{points:pts.map(p=>p.join(",")).join(" "),fill:s.color+"26",stroke:s.color,"stroke-width":2.5},svg);
+    bindTip(poly,"<b>"+s.name+"</b><br>"+MOAT_DIMS.map((d,i)=>d+"："+s.vals[i].toFixed(1)).join("<br>"));
+    pts.forEach(p=>sv("circle",{cx:p[0],cy:p[1],r:3.2,fill:s.color},svg));
+  });
+  const lg=$("#moatRadarLegend");
+  series.forEach(s=>{const sp=document.createElement("span");sp.innerHTML='<i style="background:'+s.color+'"></i>'+s.name;lg.appendChild(sp);});
+}
+
+/* ================= 图表：横向条形（通用） ================= */
+function barH(mount,items,opts){
+  const W=opts.W||880,rowH=opts.rowH||34,top=26,L=opts.L||150,R=110;
+  const H=top+items.length*rowH+16;
+  const svg=sv("svg",{viewBox:"0 0 "+W+" "+H},$(mount));
+  const max=Math.max(...items.map(i=>i.v));
+  const pw=W-L-R-8;
+  // 网格
+  for(let i=0;i<=4;i++){
+    const x=L+pw*i/4;
+    sv("line",{x1:x,y1:top-8,x2:x,y2:H-10,stroke:"#eef1f7"},svg);
+    const t=sv("text",{x:x,y:top-14,"text-anchor":"middle","font-size":10.5,fill:"#94a3b8"},svg);
+    txt(t,opts.axis?opts.axis(max*i/4):"");
+  }
+  items.forEach((it,i)=>{
+    const y=top+i*rowH,barH2=opts.barH||20;
+    const lab=sv("text",{x:L-10,y:y+barH2/2+4.5,"text-anchor":"end","font-size":12.5,"font-weight":700,fill:"#334155"},svg);txt(lab,it.name);
+    const w=Math.max(2,pw*it.v/max);
+    const g=sv("g",{},svg);
+    if(it.est){
+      const defs=sv("defs",{},svg);
+      const pat=sv("pattern",{id:"hatch"+i+Math.random().toString(36).slice(2,6),width:7,height:7,patternUnits:"userSpaceOnUse",patternTransform:"rotate(45)"},defs);
+      sv("rect",{width:4,height:7,fill:it.color||opts.color||"#4f46e5"},pat);
+      sv("rect",{x:L,y:y,width:w,height:barH2,rx:5,fill:"url(#"+pat.getAttribute("id")+")",stroke:it.color||opts.color||"#4f46e5","stroke-width":1.4},g);
+    }else{
+      sv("rect",{x:L,y:y,width:w,height:barH2,rx:5,fill:it.color||opts.color||"#4f46e5"},g);
+    }
+    const val=sv("text",{x:L+w+8,y:y+barH2/2+4.5,"font-size":12.5,"font-weight":800,fill:"#1e293b"},svg);txt(val,(opts.fmt?opts.fmt(it.v):it.v)+(it.est?" *":""));
+    if(it.note)bindTip(g,"<b>"+it.name+"</b><br>"+it.note);
+  });
+  if(opts.foot){const t=sv("text",{x:L,y:H-1,"font-size":10.5,fill:"#94a3b8"},svg);txt(t,opts.foot);}
+}
+
+/* ================= 图表：气泡散点 ================= */
+function chartScatter(){
+  const data=PRODUCTS.filter(p=>p.arr&&p.val);
+  const W=1060,H=470,L=64,R=210,T=24,B=44;
+  const svg=sv("svg",{viewBox:"0 0 "+W+" "+H},$("#scatterChart"));
+  const xmin=60,xmax=40000,ymin=1.4,ymax=1300;
+  const lg=Math.log,x=x=>L+(lg(x.arr)-lg(xmin))/(lg(xmax)-lg(xmin))*(W-L-R),y=p=>H-B-(lg(p.val)-lg(ymin))/(lg(ymax)-lg(ymin))*(H-T-B);
+  // 网格与轴
+  [[100,"$100M"],[300,"$300M"],[1000,"$1B"],[3000,"$3B"],[10000,"$10B"],[30000,"$30B"]].forEach(g=>{
+    const xx=L+(lg(g[0])-lg(xmin))/(lg(xmax)-lg(xmin))*(W-L-R);
+    sv("line",{x1:xx,y1:T,x2:xx,y2:H-B,stroke:"#eef1f7"},svg);
+    const t=sv("text",{x:xx,y:H-B+16,"text-anchor":"middle","font-size":10.5,fill:"#94a3b8"},svg);txt(t,g[1]);
+  });
+  [[2,"$2B"],[5,"$5B"],[10,"$10B"],[30,"$30B"],[100,"$100B"],[300,"$300B"],[1000,"$1T"]].forEach(g=>{
+    const yy=H-B-(lg(g[0])-lg(ymin))/(lg(ymax)-lg(ymin))*(H-T-B);
+    sv("line",{x1:L,y1:yy,x2:W-R,y2:yy,stroke:"#eef1f7"},svg);
+    const t=sv("text",{x:L-8,y:yy+4,"text-anchor":"end","font-size":10.5,fill:"#94a3b8"},svg);txt(t,g[1]);
+  });
+  const xl=sv("text",{x:(L+W-R)/2,y:H-8,"text-anchor":"middle","font-size":11.5,"font-weight":700,fill:"#64748b"},svg);txt(xl,"ARR（对数刻度）→");
+  const yl=sv("text",{x:16,y:(T+H-B)/2,"font-size":11.5,"font-weight":700,fill:"#64748b",transform:"rotate(-90 16 "+((T+H-B)/2)+")","text-anchor":"middle"},svg);txt(yl,"估值（对数刻度）→");
+  // 倍数参考线（估值=10×/50×/100× ARR，裁剪到绘图区）
+  [[10,"10×"],[50,"50×"],[100,"100×"]].forEach(m=>{
+    const a0=Math.max(xmin,ymin*1000/m[0]),a1=Math.min(xmax,ymax*1000/m[0]);
+    const p1={arr:a0,val:a0*m[0]/1000},p2={arr:a1,val:a1*m[0]/1000};
+    sv("line",{x1:x(p1),y1:y(p1),x2:x(p2),y2:y(p2),stroke:"#e2e8f0","stroke-dasharray":"5 5"},svg);
+    const t=sv("text",{x:x(p2)-6,y:y(p2)-5,"text-anchor":"end","font-size":10,fill:"#b0b8c9"},svg);txt(t,m[1]+" ARR");
+  });
+  const shortName=p=>p.name.split("（")[0];
+  data.forEach(p=>{
+    const c=CATS[p.cat],r=rating(p),rad=4+r*1.15;
+    const g=sv("g",{style:"cursor:default"},svg);
+    sv("circle",{cx:x(p),cy:y(p),r:rad,fill:c.color+"cc",stroke:c.color,"stroke-width":1.6},g);
+    const t=sv("text",{x:x(p),y:y(p)+rad+11,"text-anchor":"middle","font-size":10,"font-weight":700,fill:"#475569"},svg);txt(t,shortName(p));
+    bindTip(g,"<b>"+p.name+"</b> · "+CATS[p.cat].name+"<br>ARR："+p.arrNote+"<br>估值："+p.valNote+"<br>护城河评分："+r.toFixed(1)+" / 10");
+  });
+  // 图例
+  const lg2=$("#scatterLegend");
+  Object.keys(CATS).forEach(k=>{
+    const used=data.some(p=>p.cat===k);if(!used)return;
+    const sp=document.createElement("span");sp.innerHTML='<i style="background:'+CATS[k].color+'"></i>'+CATS[k].name;lg2.appendChild(sp);
+  });
+  const spm=document.createElement("span");spm.innerHTML='气泡大小 = 护城河评分；虚线 = 估值/ARR 倍数参考';lg2.appendChild(spm);
+}
+
+/* ================= 图表：增长折线（log Y） ================= */
+function chartGrowth(){
+  const W=880,H=380,L=60,R=118,T=20,B=40;
+  const svg=sv("svg",{viewBox:"0 0 "+W+" "+H},$("#growthChart"));
+  const xmin=2023,xmax=2026.85,ymin=5,ymax=3200;
+  const lg=Math.log;
+  const X=v=>L+(v-xmin)/(xmax-xmin)*(W-L-R),Y=v=>H-B-(lg(v)-lg(ymin))/(lg(ymax)-lg(ymin))*(H-T-B);
+  [[5,"$5M"],[10,"$10M"],[30,"$30M"],[100,"$100M"],[300,"$300M"],[1000,"$1B"],[3000,"$3B"]].forEach(g=>{
+    sv("line",{x1:L,y1:Y(g[0]),x2:W-R,y2:Y(g[0]),stroke:"#eef1f7"},svg);
+    const t=sv("text",{x:L-8,y:Y(g[0])+4,"text-anchor":"end","font-size":10.5,fill:"#94a3b8"},svg);txt(t,g[1]);
+  });
+  [[2023,"2023"],[2024,"2024"],[2025,"2025"],[2026,"2026"]].forEach(g=>{
+    sv("line",{x1:X(g[0]),y1:T,x2:X(g[0]),y2:H-B,stroke:"#f1f4f9"},svg);
+    const t=sv("text",{x:X(g[0]),y:H-B+16,"text-anchor":"middle","font-size":10.5,fill:"#94a3b8"},svg);txt(t,g[1]);
+  });
+  const yq=v=>{const yr=Math.floor(v);const q=Math.round((v-yr)*4);return yr+(q?" Q"+q:" 年初");};
+  GROWTH.forEach(s=>{
+    const path=s.pts.map((p,i)=>(i?"L ":"M ")+X(p[0]).toFixed(1)+" "+Y(p[1]).toFixed(1)).join(" ");
+    const pl=sv("path",{d:path,fill:"none",stroke:s.color,"stroke-width":2.6,"stroke-linejoin":"round"},svg);
+    bindTip(pl,"<b>"+s.name+"</b> ARR 公开节点：共 "+s.pts.length+" 个披露点");
+    s.pts.forEach(p=>{
+      const c=sv("circle",{cx:X(p[0]),cy:Y(p[1]),r:4,fill:"#fff",stroke:s.color,"stroke-width":2.2},svg);
+      bindTip(c,"<b>"+s.name+"</b><br>"+(p[0]%1?yq(p[0]):p[0]+" 年")+"："+fmtM(p[1])+" ARR");
+    });
+    const last=s.pts[s.pts.length-1];
+    const t=sv("text",{x:X(last[0])+8,y:Y(last[1])-6,"font-size":11,"font-weight":800,fill:s.color},svg);txt(t,s.name);
+  });
+  const lg2=$("#growthLegend");
+  GROWTH.forEach(s=>{const sp=document.createElement("span");sp.innerHTML='<i style="background:'+s.color+'"></i>'+s.name;lg2.appendChild(sp);});
+}
+
+/* ================= 护城河热力图 ================= */
+function chartHeat(){
+  const sorted=[...PRODUCTS].sort((a,b)=>rating(b)-rating(a));
+  let html='<table class="heat"><tr><th class="rw" style="text-align:left">产品（按综合评分排序）</th>';
+  MOAT_DIMS.forEach(d=>html+='<th>'+d+'</th>');
+  html+='<th>综合</th></tr>';
+  const colors=["#f1f5f9","#e0e7ff","#a5b4fc","#6366f1","#4338ca","#1e1b6e"];
+  sorted.forEach(p=>{
+    const c=CATS[p.cat],r=rating(p);
+    html+='<tr><td class="rw"><span style="display:inline-block;width:9px;height:9px;border-radius:3px;background:'+c.color+';margin-right:7px"></span>'+esc(p.name.split("（")[0])+' <span style="color:#94a3b8;font-weight:600">'+CATS[p.cat].name+'</span></td>';
+    p.moat.forEach(m=>{html+='<td class="cell" data-t="'+esc(p.name.split("（")[0])+' · '+m+'/5" style="background:'+colors[m]+';color:'+(m>=3?'#fff':'#475569')+'">'+m+'</td>';});
+    html+='<td style="text-align:center;font-weight:900;color:#111834;padding:6px 8px">'+r.toFixed(1)+'</td></tr>';
+  });
+  html+='</table>';
+  $("#heatTable").innerHTML=html;
+  $$("#heatTable td.cell").forEach(td=>{bindTip(td,td.dataset.t);});
+}
+
+/* ================= 汇总图表装配 ================= */
+function buildCharts(){
+  chartFunnel();
+  chartDonut();
+  chartRadar();
+  // 模型层 ARR（单位：亿美元）
+  barH("#arrModelChart",[
+    {name:"Anthropic",v:300,note:"年化运行率约 $300 亿（2026.4 报道口径）",color:"#4f46e5"},
+    {name:"OpenAI",v:250,note:"年化收入超 $250 亿（2026.2 报道口径）",color:"#818cf8"}
+  ],{fmt:v=>"约 $"+v+" 亿",axis:v=>v>0?("$"+Math.round(v)+" 亿"):"$0",L:120,W:880,foot:"两家合计约占 Forbes AI 50 全榜融资额的 80%（$242.6B / $305.6B）——资本与收入的集中度均为历史罕见。"});
+  // 应用与基础设施层 ARR
+  const apps=PRODUCTS.filter(p=>p.arr&&p.cat!=="model").sort((a,b)=>b.arr-a.arr);
+  barH("#arrAppChart",apps.map(p=>({name:p.name.split("（")[0],v:p.arr,note:"ARR："+p.arrNote+"<br>估值："+p.valNote,color:CATS[p.cat].color})),
+    {fmt:v=>"$"+v+"M",axis:v=>"$"+Math.round(v)+"M",L:118,W:900,rowH:30,barH:18,
+     foot:"* 未披露：Databricks（多产品线，估值 $188B）、OpenEvidence（免费增长期，估值 $12B）。EvenUp 为估计口径；Harvey 为 $190M 口径（另有 $300M 报道）。"});
+  chartScatter();
+  barH("#speedChart",SPEED.map(s=>({name:s.name,v:s.m,est:s.est,note:s.note,color:s.est?"#a5b4fc":"#4f46e5"})),
+    {fmt:v=>v+" 个月",axis:v=>Math.round(v)+" 月",L:120,W:880,rowH:29,barH:18,foot:"* 斜纹为按公开报道相邻节点推算；其余为直接披露口径。"});
+  chartGrowth();
+  chartHeat();
+  barH("#rankChart",[...PRODUCTS].sort((a,b)=>rating(b)-rating(a)).map(p=>({name:p.name.split("（")[0],v:rating(p),note:p.verdict,color:CATS[p.cat].color})),
+    {fmt:v=>v.toFixed(1),axis:v=>v.toFixed(0),L:118,W:900,rowH:28,barH:17,foot:"评分 = 六维加权：数据 25% / 工作流 20% / 分发 15% / 定价权 15% / 网络效应 15% / 规模成本 10%。" });
+}
+
+/* ================= 导航 / 进度 / 交互 ================= */
+function setupNav(){
+  const links=[...$$(".nav-links a")];
+  const secs=links.map(a=>document.querySelector(a.getAttribute("href")));
+  window.addEventListener("scroll",()=>{
+    const st=scrollY,dh=document.documentElement.scrollHeight-innerHeight;
+    $("#progress").style.width=(st/dh*100)+"%";
+    $("#top-btn").classList.toggle("show",st>700);
+    let cur=-1;
+    secs.forEach((s,i)=>{if(s&&s.getBoundingClientRect().top<130)cur=i;});
+    links.forEach((a,i)=>a.classList.toggle("active",i===cur));
+  },{passive:true});
+  $("#top-btn").onclick=()=>scrollTo({top:0,behavior:"smooth"});
+}
+
+/* ================= 产品速览索引 ================= */
+function renderIndex(){
+  var el=document.getElementById("prodIndex");if(!el)return;
+  var rows=PRODUCTS.map(function(p,i){
+    var c=CATS[p.cat];
+    return '<tr><td style="color:#94a3b8">'+(i+1)+'</td>'+
+      '<td><a href="#p-'+p.id+'" style="color:#4f46e5;font-weight:700;text-decoration:none;border-bottom:1px dashed #c7cdfa">'+p.name+' ↗</a></td>'+
+      '<td><span class="tag" style="color:'+c.color+';background:'+c.color+'14;border-color:'+c.color+'33">'+c.name+'</span></td>'+
+      '<td>'+p.founded+'</td><td style="font-size:12.5px">'+p.arrNote+'</td><td style="font-size:12.5px">'+p.valNote+'</td>'+
+      '<td><b style="color:'+c.color+'">'+rating(p).toFixed(1)+'</b></td></tr>';
+  }).join("");
+  el.innerHTML='<table class="tbl"><tr><th>#</th><th>产品</th><th>赛道</th><th>成立</th><th>ARR（报道口径）</th><th>估值</th><th>护城河评分</th></tr>'+rows+'</table>';
+}
+
+/* ================= 启动 ================= */
+renderFilters();
+renderProducts();
+renderIndex();
+buildCharts();
+setupNav();
+
+</script>
+</body>
+</html>
