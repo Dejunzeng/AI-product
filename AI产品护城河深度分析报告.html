@@ -193,7 +193,7 @@ footer b{color:#dfe4f5}
     <div class="stat-cards">
       <div class="stat-card"><div class="num">20 款</div><div class="lbl">通过三重标准筛选的<br>高护城河 AI 产品</div></div>
       <div class="stat-card"><div class="num">≈ $600 亿+</div><div class="lbl">入选产品合计年化收入<br>（ARR，含模型层口径）</div></div>
-      <div class="stat-card"><div class="num">8 / 20</div><div class="lbl">垂直行业 AI（法律/医疗/客服/<br>金融/GTM）占比 40%</div></div>
+      <div class="stat-card"><div class="num">9 / 20</div><div class="lbl">垂直行业 AI（法律/医疗/客服/<br>金融/GTM）占比 45%</div></div>
       <div class="stat-card"><div class="num">≈ 12 个月</div><div class="lbl">最快达到 $1 亿 ARR 用时<br>（ElevenLabs）</div></div>
       <div class="stat-card"><div class="num">80%</div><div class="lbl">第三方预测将倒下的<br>「薄壳 wrapper」比例</div></div>
     </div>
@@ -295,6 +295,10 @@ footer b{color:#dfe4f5}
   </div>
   <div class="callout">每款产品的分析均遵循统一的八段生命周期框架，确保「一个不漏、逐项对齐」；卡片右上角为<b>护城河综合评分</b>（六维加权，满分 10）。点击下方标签可按赛道过滤。</div>
   <div class="filters" id="filters"></div>
+  <div class="card pad" style="margin-bottom:26px">
+    <h3 class="mini">产品速览索引（点击产品名跳转至完整八段分析）</h3>
+    <div class="heat-wrap" id="prodIndex"></div>
+  </div>
   <div id="prodGrid"></div>
 </section>
 
@@ -417,17 +421,44 @@ footer b{color:#dfe4f5}
 <section id="appendix">
   <div class="sec-head">
     <div class="no">07</div>
-    <div><h2>附录：数据口径与参考来源</h2><div class="sub">所有财务数据均为公开报道 / 第三方估计口径</div></div>
+    <div><h2>附录：筛选全记录、数据口径与参考来源</h2><div class="sub">哪些产品被评估过、为何落选，以及全部数据的口径边界</div></div>
   </div>
   <div class="card pad">
-    <h3 class="mini">口径与局限声明</h3>
+    <h3 class="mini">A. 筛选全记录：评估过但未入选的代表产品及落选原因</h3>
+    <p class="body">为保证「一个不漏」，下表完整披露进入评估视野、但未通过三重标准的代表性产品（含荣誉提名与观察名单）。落选不等于否定——多数是同一原型下让位于更强的代表，或变现验证尚早。</p>
+    <table class="tbl">
+      <tr><th>产品 / 公司</th><th>赛道</th><th>关键事实（公开口径）</th><th>落选原因（对照三重标准）</th><th>关联案例</th></tr>
+      <tr><td colspan="5" style="background:#f8f9fd;font-weight:800;color:#4f46e5">组一 · 护城河受结构性侵蚀或未验证</td></tr>
+      <tr><td><b>Scale AI</b></td><td>数据标注</td><td>曾为行业龙头；2025 年 Meta 获约半数股权并聘走创始人 Alexandr Wang</td><td>标准一受损：竞争对手控制股权导致核心客户流失，数据生意的中立性根基被动摇</td><td>对照 Mercor（以中立定位承接份额）</td></tr>
+      <tr><td><b>Lovable</b></td><td>消费级应用生成</td><td>14 个月约 $4–5 亿 ARR，史上最快之列</td><td>标准一存疑：产品层较薄、留存与模型层挤压风险未经周期验证——<b>观察名单第一位</b></td><td>对照 Cursor（同为 wrapper 起点）</td></tr>
+      <tr><td><b>Mistral AI</b></td><td>开源模型</td><td>企业客户含 Cisco 与欧洲政府机构，主权叙事鲜明</td><td>标准二量级差距：收入与双寡头差一个量级，开源 + 主权尚未完全兑现为收入规模</td><td>对照 Anthropic</td></tr>
+      <tr><td><b>Suno</b></td><td>AI 音乐</td><td>消费级音乐生成领先、用户增长快</td><td>标准一 / 三存疑：版权诉讼未决，商业化天花板待验证</td><td>对照 Midjourney（社区 + 品味路线）</td></tr>
+      <tr><td colspan="5" style="background:#f8f9fd;font-weight:800;color:#7c3aed">组二 · 变现未验证或披露不足</td></tr>
+      <tr><td><b>Surge AI</b></td><td>数据标注</td><td>报道口径收入超 $10 亿且盈利</td><td>披露不足：理论上符合三重标准，但公开材料无法支撑八段生命周期分析——<b>本报告最大遗憾</b></td><td>对照 Mercor</td></tr>
+      <tr><td><b>Thinking Machines Lab</b></td><td>模型</td><td>融资 $20 亿（Mira Murati 创立）</td><td>标准二未满足：产品尚未正式发布</td><td>—</td></tr>
+      <tr><td><b>Safe Superintelligence</b></td><td>模型</td><td>Ilya Sutskever 创立、巨额融资</td><td>标准二未满足：研究导向，无公开产品收入</td><td>—</td></tr>
+      <tr><td><b>Physical Intelligence / Figure / Skild</b></td><td>机器人 / 物理智能</td><td>大额融资，Physical Intelligence 单轮 $10 亿</td><td>标准二未满足：商业化尚早——十年维度的候选名单</td><td>—</td></tr>
+      <tr><td colspan="5" style="background:#f8f9fd;font-weight:800;color:#047857">组三 · 赛道代表权让位（同原型已有更强代表入选）</td></tr>
+      <tr><td><b>Rogo</b></td><td>金融分析 AI</td><td>约 2.5 万名银行家与投资人使用（Forbes AI 50 2026 新晋）</td><td><b>荣誉提名第一名</b>：符合「垂直专业 AI」原型，公开生命周期材料少于法律 / 医疗代表</td><td>对照 Harvey / Legora</td></tr>
+      <tr><td><b>EliseAI</b></td><td>地产 / 医疗垂直代理</td><td>多垂直部署、收入过亿</td><td>同原型已被 Sierra / Decagon / Abridge 更强代表覆盖</td><td>对照 Sierra</td></tr>
+      <tr><td><b>Ambience / Suki</b></td><td>医疗 scribe</td><td>与 Abridge 同赛道竞争</td><td>被 Abridge（KLAS 第一、Epic 深度集成、250+ 系统）压制</td><td>对照 Abridge</td></tr>
+      <tr><td><b>Brex / Mercury</b></td><td>企业金融</td><td>与 Ramp 同赛道</td><td>让位于 Ramp（正现金流 + AI 原生叙事更完整）</td><td>对照 Ramp</td></tr>
+      <tr><td><b>Replit / Bolt / v0</b></td><td>编程工具</td><td>各有特色用户群</td><td>让位于 Cursor（规模与产品深度）与 Cognition（自主路线代表）</td><td>对照 Cursor</td></tr>
+      <tr><td><b>Runway / Synthesia / HeyGen</b></td><td>视频生成</td><td>视频赛道头部，各有企业客户</td><td>视频生成商业化节奏慢于图像 / 语音；Runway 面临模型层激烈竞争，HeyGen 场景易被原生化</td><td>对照 ElevenLabs</td></tr>
+      <tr><td colspan="5" style="background:#f8f9fd;font-weight:800;color:#b45309">组四 · 巨头子产品（无法按独立公司维度评估）</td></tr>
+      <tr><td><b>GitHub Copilot（微软）</b></td><td>编程 AI</td><td>分发之王，AI 收入并入 GitHub $20 亿+ 口径</td><td>非独立公司；作为 Cursor 的主要对手在正文反复出现</td><td>对照 Cursor</td></tr>
+      <tr><td><b>Microsoft Copilot / Google Gemini</b></td><td>通用企业 / 消费 AI</td><td>生态与分发优势最大</td><td>非独立公司；作为 Glean、Perplexity 的核心对照变量出现</td><td>对照 Glean / Perplexity</td></tr>
+      <tr><td><b>Meta AI / xAI Grok</b></td><td>消费 AI</td><td>巨大分发与算力</td><td>非独立公司，财务未独立披露</td><td>—</td></tr>
+    </table>
+    <div class="callout" style="margin-bottom:0"><b>观察名单（下一版优先复核）：</b>Lovable（增长奇迹 vs 护城河存疑）、Rogo（垂直专业 AI 的金融样本）、Surge AI（盈利但披露不足）、Mistral（主权开源兑现度）。另外，Jasper、Humane、Windsurf、Copy.ai 等落选者已在第五章作为失败对照完整分析——「落选」与「失败」是两类不同结论。</div>
+    <h3 class="mini" style="margin-top:24px">B. 口径与局限声明</h3>
     <ul class="dash">
       <li>本报告全部公司均为私营公司（除个别被收购方），ARR、估值、用户数等指标来自媒体披露、投资人口径或第三方估计（Sacra、arr.club、valueaddvc、North Metric 等），不同来源存在口径与时点差异，报告中已尽量标注时点（如「2026.2」）。</li>
       <li>前沿模型层收入为 run-rate（年化运行率）而非 GAAP 年收入；Harvey（$190M 与 $300M 两个口径）、Mercor（$450M–$1B 区间）等分歧数据均以区间或双口径呈现。</li>
       <li>护城河六维评分与综合评分为本报告分析框架下的主观量化，用于横向比较，不构成投资建议。</li>
       <li>「达到 $1 亿 ARR 用时」图表中标注为「推算」的条目，依据公开披露的相邻节点内插，可能与实际存在数月偏差。</li>
     </ul>
-    <h3 class="mini" style="margin-top:20px">主要参考来源（2024.1–2026.9 公开报道与榜单）</h3>
+    <h3 class="mini" style="margin-top:20px">C. 主要参考来源（2024.1–2026.9 公开报道与榜单）</h3>
     <table class="tbl">
       <tr><th>类别</th><th>来源</th></tr>
       <tr><td>榜单</td><td>Forbes AI 50（2025、2026 第八届，2026.4.16 发布）；CB Insights AI 100（2025、2026 第十届，2026.5 发布）；a16z Top 100 GenAI Apps（2024、2025）；TIME Best Inventions（2024、2025）</td></tr>
@@ -1171,9 +1202,24 @@ function setupNav(){
   $("#top-btn").onclick=()=>scrollTo({top:0,behavior:"smooth"});
 }
 
+/* ================= 产品速览索引 ================= */
+function renderIndex(){
+  var el=document.getElementById("prodIndex");if(!el)return;
+  var rows=PRODUCTS.map(function(p,i){
+    var c=CATS[p.cat];
+    return '<tr><td style="color:#94a3b8">'+(i+1)+'</td>'+
+      '<td><a href="#p-'+p.id+'" style="color:#4f46e5;font-weight:700;text-decoration:none;border-bottom:1px dashed #c7cdfa">'+p.name+' ↗</a></td>'+
+      '<td><span class="tag" style="color:'+c.color+';background:'+c.color+'14;border-color:'+c.color+'33">'+c.name+'</span></td>'+
+      '<td>'+p.founded+'</td><td style="font-size:12.5px">'+p.arrNote+'</td><td style="font-size:12.5px">'+p.valNote+'</td>'+
+      '<td><b style="color:'+c.color+'">'+rating(p).toFixed(1)+'</b></td></tr>';
+  }).join("");
+  el.innerHTML='<table class="tbl"><tr><th>#</th><th>产品</th><th>赛道</th><th>成立</th><th>ARR（报道口径）</th><th>估值</th><th>护城河评分</th></tr>'+rows+'</table>';
+}
+
 /* ================= 启动 ================= */
 renderFilters();
 renderProducts();
+renderIndex();
 buildCharts();
 setupNav();
 
